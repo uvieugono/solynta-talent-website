@@ -50,7 +50,9 @@ export default function Hero() {
           {/* CTAs */}
           <div className="animate-fade-up delay-300 flex flex-wrap gap-4 mb-16">
             <a
-              href="#contact"
+              href="https://calendly.com/uvieugono"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative px-8 py-4 rounded-full bg-teal text-midnight font-semibold text-base hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400"
             >
               <span className="relative z-10">Book Free Discovery Call</span>

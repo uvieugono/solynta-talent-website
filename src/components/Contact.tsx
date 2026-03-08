@@ -59,6 +59,13 @@ export default function Contact() {
               <span className="text-sm">hello@solyntatalent.com</span>
             </a>
             <a
+              href="tel:+15043236957"
+              className="flex items-center gap-2 text-ghost hover:text-teal transition-colors"
+            >
+              <span>📞</span>
+              <span className="text-sm">+1 (504) 323-6957</span>
+            </a>
+            <a
               href="https://www.solyntatalent.com"
               className="flex items-center gap-2 text-ghost hover:text-teal transition-colors"
             >
@@ -70,7 +77,9 @@ export default function Contact() {
 
         <ScrollReveal delay={300}>
           <a
-            href="mailto:hello@solyntatalent.com?subject=Discovery%20Call%20Request"
+            href="https://calendly.com/uvieugono"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-10 py-4 rounded-full bg-teal text-midnight font-bold text-base hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400 glow-teal"
           >
             Book Your Free Discovery Call →

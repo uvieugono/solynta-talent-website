@@ -87,7 +87,9 @@ export default function HowItWorks() {
               </p>
             </div>
             <a
-              href="#contact"
+              href="https://calendly.com/uvieugono"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-6 py-3 rounded-full bg-teal text-midnight font-semibold text-sm hover:shadow-lg hover:shadow-teal/20 transition-all whitespace-nowrap"
             >
               Claim Your Free Audit
