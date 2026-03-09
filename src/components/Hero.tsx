@@ -1,8 +1,8 @@
 "use client";
 
 const stats = [
-  { value: "40", label: "AI Agents", suffix: "" },
-  { value: "8", label: "Service Modules", suffix: "" },
+  { value: "41", label: "AI Agents", suffix: "" },
+  { value: "9", label: "Service Modules", suffix: "" },
   { value: "$250", label: "Starting From", suffix: "/mo" },
   { value: "70-85", label: "AI Automation", suffix: "%" },
 ];
@@ -34,17 +34,18 @@ export default function Hero() {
 
           {/* Headline */}
           <h1 className="animate-fade-up delay-100 font-[var(--font-display)] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight mb-6">
-            Where Talent
+            Your Entire Back Office.
             <br />
-            Meets{" "}
-            <span className="text-gradient">Intelligence</span>
+            <span className="text-gradient">AI-Powered.</span>
+            <br />
+            <span className="text-white-soft/80">One Subscription.</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="animate-fade-up delay-200 text-lg sm:text-xl text-ghost max-w-2xl mb-10 leading-relaxed">
-            8 AI-augmented service modules. 40 purpose-built AI agents.
-            Pick what you need. Pay only for what you use.
-            Scale as your business grows.
+          <p className="animate-fade-up delay-200 text-lg sm:text-xl lg:text-2xl text-ghost max-w-2xl mb-10 leading-relaxed">
+            Outsourcing rebuilt for the AI age. We run your entire
+            back office end-to-end — so you can focus exclusively on
+            what generates revenue.
           </p>
 
           {/* CTAs */}

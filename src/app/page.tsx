@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Manifesto from "@/components/Manifesto";
 import Challenge from "@/components/Challenge";
 import Services from "@/components/Services";
 import Platform from "@/components/Platform";
@@ -16,6 +17,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <Manifesto />
       <Challenge />
       <Services />
       <Platform />
