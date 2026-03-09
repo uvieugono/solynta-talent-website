@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Solynta Talent | Business Operations as a Service",
   description:
-    "AI-augmented business operations — Finance, Sales, Marketing, HR, Dev, Data Science & more. 25 AI agents. 8 service modules. From $250/month.",
+    "AI-augmented business operations — Finance, Sales, Marketing, HR, Dev, Data Science & more. 26 AI agents. 8 service modules. From $250/month.",
   keywords:
     "BOaaS, business operations, AI operations, outsourced finance, AI agents, SolyntaFlow, ERP",
   openGraph: {

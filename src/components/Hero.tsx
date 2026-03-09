@@ -1,7 +1,7 @@
 "use client";
 
 const stats = [
-  { value: "25", label: "AI Agents", suffix: "" },
+  { value: "26", label: "AI Agents", suffix: "" },
   { value: "8", label: "Service Modules", suffix: "" },
   { value: "$250", label: "Starting From", suffix: "/mo" },
   { value: "70-85", label: "AI Automation", suffix: "%" },
@@ -42,7 +42,7 @@ export default function Hero() {
 
           {/* Subheadline */}
           <p className="animate-fade-up delay-200 text-lg sm:text-xl text-ghost max-w-2xl mb-10 leading-relaxed">
-            8 AI-augmented service modules. 25 purpose-built AI agents.
+            8 AI-augmented service modules. 26 purpose-built AI agents.
             Pick what you need. Pay only for what you use.
             Scale as your business grows.
           </p>

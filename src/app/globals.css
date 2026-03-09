@@ -222,6 +222,51 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* ---- Agent card ---- */
+.agent-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.agent-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 212, 170, 0.03) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.agent-card:hover::after {
+  opacity: 1;
+}
+
+.agent-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ---- Shimmer effect ---- */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 170, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
 /* ---- Custom scrollbar ---- */
 ::-webkit-scrollbar {
   width: 6px;

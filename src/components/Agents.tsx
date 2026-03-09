@@ -7,10 +7,10 @@ const agentGroups = [
     color: "border-teal/30 bg-teal/5",
     tagColor: "bg-teal/10 text-teal",
     agents: [
-      { name: "Bookkeeper", desc: "Daily posting, bank reconciliation, AP/AR, invoicing" },
-      { name: "Accountant", desc: "Month-end close, P&L, balance sheet, management packs" },
-      { name: "Payroll Officer", desc: "Salary computation, statutory deductions, payslips" },
-      { name: "Tax Accountant", desc: "VAT/WHT calculations, filing prep, compliance" },
+      { name: "The Ledger Keeper", role: "Bookkeeper", desc: "Daily posting, bank reconciliation, AP/AR, invoicing, expense management" },
+      { name: "The Controller", role: "Accountant", desc: "Month-end close, P&L, balance sheet, variance analysis, management packs" },
+      { name: "The Payroll Officer", role: "Payroll", desc: "Salary computation, statutory deductions, payslips, remittance scheduling" },
+      { name: "The Tax Guardian", role: "Tax Compliance", desc: "VAT/WHT calculations, filing prep, deadline management, compliance" },
     ],
   },
   {
@@ -18,10 +18,10 @@ const agentGroups = [
     color: "border-lavender/30 bg-lavender/5",
     tagColor: "bg-lavender/10 text-lavender",
     agents: [
-      { name: "Web Developer", desc: "Website build, landing pages, mobile-responsive design" },
-      { name: "SEO Specialist", desc: "Keyword research, on-page SEO, rank tracking" },
-      { name: "CRM Specialist", desc: "Data cleaning, lead follow-up automation, enrichment" },
-      { name: "Sales Ops", desc: "Pipeline reports, forecasts, outreach drafting" },
+      { name: "The Growth Engine", role: "Sales & CRM", desc: "Pipeline management, lead enrichment, outreach, forecasting, deal tracking" },
+      { name: "The Digital Architect", role: "Web & SEO", desc: "Website management, keyword research, technical SEO, Google My Business" },
+      { name: "The CRM Specialist", role: "CRM Data", desc: "Data cleaning, lead follow-up automation, enrichment, pipeline hygiene" },
+      { name: "The Sales Ops Analyst", role: "Sales Analytics", desc: "Pipeline reports, revenue forecasting, conversion rate analysis, team performance" },
     ],
   },
   {
@@ -29,9 +29,9 @@ const agentGroups = [
     color: "border-coral/30 bg-coral/5",
     tagColor: "bg-coral/10 text-coral",
     agents: [
-      { name: "WhatsApp Bot", desc: "24/7 FAQ, order status, booking queries, escalation" },
-      { name: "Email Triage", desc: "Auto-triage, priority sorting, reply drafting" },
-      { name: "Website Chatbot", desc: "Lead capture, product queries, appointment booking" },
+      { name: "The 24/7 Responder", role: "Multi-Channel", desc: "WhatsApp, email, web chat — 24/7 availability with escalation routing" },
+      { name: "The Email Triage Agent", role: "Email Intelligence", desc: "Auto-triage, priority sorting, reply drafting, urgent case flagging" },
+      { name: "The Website Chatbot", role: "Web Chat", desc: "Lead capture, product queries, appointment booking, knowledge base search" },
     ],
   },
   {
@@ -39,9 +39,9 @@ const agentGroups = [
     color: "border-gold/30 bg-gold/5",
     tagColor: "bg-gold/10 text-gold",
     agents: [
-      { name: "HR Administrator", desc: "Onboarding, leave tracking, performance reviews" },
-      { name: "Procurement", desc: "PO generation, vendor contracts, invoice approvals" },
-      { name: "IT Admin", desc: "SaaS license tracking, user provisioning, security" },
+      { name: "The HR Administrator", role: "HR Operations", desc: "Onboarding, leave tracking, performance reviews, compliance" },
+      { name: "The Procurement Officer", role: "Procurement", desc: "PO generation, vendor contracts, invoice approvals, budget checking" },
+      { name: "The IT Admin", role: "IT Operations", desc: "SaaS license tracking, user provisioning, security compliance" },
     ],
   },
   {
@@ -49,13 +49,14 @@ const agentGroups = [
     color: "border-pink-400/30 bg-pink-400/5",
     tagColor: "bg-pink-400/10 text-pink-400",
     agents: [
-      { name: "Social Media Mgr", desc: "Content calendar, multi-platform posting, community" },
-      { name: "PPC Specialist", desc: "Google/Meta/LinkedIn ads, bid optimization" },
-      { name: "Content Marketer", desc: "Blog articles, lead magnets, newsletters" },
-      { name: "SEO Content", desc: "Keyword-optimized content, gap analysis" },
-      { name: "Video Producer", desc: "Short-form scripts, storyboards, creative briefs" },
-      { name: "Marketing Automation", desc: "Email drips, retargeting, lead scoring" },
-      { name: "Marketing Analytics", desc: "Campaign ROI, attribution, A/B test analysis" },
+      { name: "Social Media Manager", role: "Social Media", desc: "Content calendar, multi-platform posting, community, Canva briefs" },
+      { name: "PPC Specialist", role: "Paid Ads", desc: "Google/Meta/LinkedIn ads, bid optimization, retargeting, budgets" },
+      { name: "Content Marketer", role: "Content Strategy", desc: "Blog articles, lead magnets, newsletters, campaign calendars" },
+      { name: "SEO Content Strategist", role: "SEO Programme", desc: "Keyword-optimized content, gap analysis, backlink strategy, technical SEO" },
+      { name: "Video Producer", role: "Video Content", desc: "Short-form scripts, storyboards, creative briefs, platform formatting" },
+      { name: "Marketing Automator", role: "Automation", desc: "Email drips, retargeting, lead scoring, conversion optimization" },
+      { name: "Marketing Analyst", role: "Analytics", desc: "Campaign ROI, attribution, A/B tests, competitor intelligence" },
+      { name: "Academy US Campaign Manager", role: "Campaign Ops", desc: "30-day content calendars, social posting orchestration, campaign metrics" },
     ],
   },
   {
@@ -63,8 +64,8 @@ const agentGroups = [
     color: "border-emerald-400/30 bg-emerald-400/5",
     tagColor: "bg-emerald-400/10 text-emerald-400",
     agents: [
-      { name: "BI Analyst", desc: "KPI dashboards, forecasting, board-ready reports" },
-      { name: "Strategy Advisor", desc: "Competitor benchmarking, scenario modelling, risk" },
+      { name: "The Insight Engine", role: "Analytics & BI", desc: "Cross-business KPI dashboards, forecasting, board-ready executive reports" },
+      { name: "The Strategy Advisor", role: "Strategic Intelligence", desc: "Competitor benchmarking, scenario modelling, risk assessment, growth strategy" },
     ],
   },
   {
@@ -72,11 +73,13 @@ const agentGroups = [
     color: "border-cyan-400/30 bg-cyan-400/5",
     tagColor: "bg-cyan-400/10 text-cyan-400",
     agents: [
-      { name: "QA Reviewer", desc: "Confidence-based review, audit trail, compliance" },
-      { name: "Onboarding", desc: "AI readiness data gathering, SOP capture, KB building" },
+      { name: "The Audit Sentinel", role: "Compliance", desc: "Confidence-based review, audit trail, compliance monitoring, escalation enforcement" },
+      { name: "The Knowledge Architect", role: "Onboarding", desc: "Client data ingestion, AI readiness, SOP extraction, knowledge base building" },
     ],
   },
 ];
+
+const totalAgents = agentGroups.reduce((sum, g) => sum + g.agents.length, 0);
 
 export default function Agents() {
   return (
@@ -90,7 +93,7 @@ export default function Agents() {
             Your AI Workforce
           </p>
           <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 max-w-3xl">
-            25 purpose-built AI agents
+            {totalAgents} purpose-built AI agents
           </h2>
           <p className="text-ghost text-lg max-w-2xl mb-6">
             Each agent is trained on your business data, operates within strict confidence
@@ -100,13 +103,13 @@ export default function Agents() {
           {/* Escalation matrix inline */}
           <div className="flex flex-wrap gap-3 mb-16">
             <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20">
-              &gt;90% confidence → Auto-approved
+              &gt;90% confidence &rarr; Auto-approved
             </span>
             <span className="px-3 py-1.5 rounded-full bg-gold/10 text-gold text-xs font-medium border border-gold/20">
-              70–90% → Operator review
+              70&ndash;90% &rarr; Operator review
             </span>
             <span className="px-3 py-1.5 rounded-full bg-coral/10 text-coral text-xs font-medium border border-coral/20">
-              &lt;70% → Escalated to Supervisor
+              &lt;70% &rarr; Escalated to Supervisor
             </span>
           </div>
         </ScrollReveal>
@@ -134,12 +137,15 @@ export default function Agents() {
                       key={j}
                       className="p-4 rounded-xl bg-midnight/40 border border-white/5 hover:border-white/10 transition-colors"
                     >
-                      <div className="flex items-center gap-2 mb-1.5">
+                      <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm">🤖</span>
                         <span className="font-semibold text-sm text-white-soft">
                           {a.name}
                         </span>
                       </div>
+                      <p className={`text-[10px] uppercase tracking-wider font-medium mb-1.5 ${g.tagColor.split(" ")[1]}`}>
+                        {a.role}
+                      </p>
                       <p className="text-xs text-ghost/70 leading-relaxed">
                         {a.desc}
                       </p>
