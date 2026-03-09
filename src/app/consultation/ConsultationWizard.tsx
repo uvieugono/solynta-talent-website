@@ -518,6 +518,7 @@ export default function ConsultationWizard() {
     setError(null);
 
     try {
+      // Trigger analysis — marks consultation for the AI Business Consultant agent
       const res = await fetch(`${API_BASE}/api/customer-service/consultation/analyze/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -530,11 +531,56 @@ export default function ConsultationWizard() {
         throw new Error(json.error || "Analysis failed. Please try again.");
       }
 
-      setAnalysisReport(json.analysis);
-      setStep(6); // Report view
+      // If already completed (cached result), show immediately
+      if (json.status === "completed" && json.analysis) {
+        setAnalysisReport(json.analysis);
+        setStep(6);
+        setIsAnalyzing(false);
+        return;
+      }
+
+      // Poll for results — the AI Business Consultant agent processes asynchronously
+      const pollInterval = 5000; // 5 seconds
+      const maxPolls = 60; // 5 minutes max
+      let polls = 0;
+
+      const poll = async () => {
+        polls++;
+        try {
+          const pollRes = await fetch(
+            `${API_BASE}/api/customer-service/consultation/${consultationId}/`
+          );
+          const pollData = await pollRes.json();
+
+          if (pollData.status === "completed" && pollData.analysis) {
+            setAnalysisReport(pollData.analysis);
+            setStep(6);
+            setIsAnalyzing(false);
+            return;
+          }
+
+          if (pollData.status === "failed") {
+            throw new Error("Analysis failed. Please try again.");
+          }
+
+          if (polls >= maxPolls) {
+            throw new Error(
+              "Analysis is taking longer than expected. We'll email your results to you shortly."
+            );
+          }
+
+          // Continue polling
+          setTimeout(poll, pollInterval);
+        } catch (err: unknown) {
+          setError(err instanceof Error ? err.message : "Analysis check failed");
+          setIsAnalyzing(false);
+        }
+      };
+
+      // Start polling after a short delay
+      setTimeout(poll, pollInterval);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Analysis failed");
-    } finally {
       setIsAnalyzing(false);
     }
   };
@@ -592,7 +638,7 @@ export default function ConsultationWizard() {
             AI Consultant at Work
           </h2>
           <p className="text-ghost mb-8">
-            Our AI is analyzing your business across 40+ dimensions and preparing a custom roadmap.
+            Our AI Business Consultant is analyzing your business across 40+ dimensions and preparing a custom roadmap.
           </p>
 
           {/* Progress phases */}
