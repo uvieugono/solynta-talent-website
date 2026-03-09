@@ -40,7 +40,7 @@ export default function Platform() {
               <span className="text-gradient">SolyntaFlow</span>
             </h2>
             <p className="text-ghost text-lg max-w-2xl mx-auto">
-              Our proprietary AI-native ERP. One system of record. Eight service modules.
+              Our proprietary AI-native ERP. One system of record. Nine service modules.
               Zero middleware. Enterprise power at an SME price tag.
             </p>
           </div>
