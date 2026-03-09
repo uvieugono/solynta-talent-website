@@ -285,6 +285,20 @@ body {
   background: var(--color-teal);
 }
 
+/* ---- Chat scrollbar ---- */
+.chat-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-slate-mid);
+  border-radius: 2px;
+}
+
 /* ---- Custom scrollbar ---- */
 ::-webkit-scrollbar {
   width: 6px;
