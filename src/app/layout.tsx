@@ -13,6 +13,18 @@ export const metadata: Metadata = {
       "9 AI-augmented service modules. Pick what you need. Pay only for what you use.",
     type: "website",
     url: "https://www.solyntalent.com",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1344,
+        height: 804,
+        alt: "Solynta Talent — Where Talent Meets Intelligence",
+      },
+    ],
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
 };
 
