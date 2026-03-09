@@ -56,7 +56,6 @@ const agentGroups = [
       { name: "Video Producer", role: "Video Content", desc: "Short-form scripts, storyboards, creative briefs, platform formatting" },
       { name: "Marketing Automator", role: "Automation", desc: "Email drips, retargeting, lead scoring, conversion optimization" },
       { name: "Marketing Analyst", role: "Analytics", desc: "Campaign ROI, attribution, A/B tests, competitor intelligence" },
-      { name: "Academy US Campaign Mgr", role: "Campaign Ops", desc: "30-day content calendars, social posting orchestration, campaign metrics" },
     ],
   },
   {
@@ -108,7 +107,6 @@ const agentGroups = [
   },
 ];
 
-const totalAgents = agentGroups.reduce((sum, g) => sum + g.agents.length, 0);
 
 export default function Agents() {
   return (
@@ -122,11 +120,15 @@ export default function Agents() {
             Your AI Workforce
           </p>
           <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 max-w-3xl">
-            {totalAgents} purpose-built AI agents
+            40 purpose-built AI agents
           </h2>
-          <p className="text-ghost text-lg max-w-2xl mb-6">
+          <p className="text-ghost text-lg max-w-2xl mb-4">
             Each agent is trained on your business data, operates within strict confidence
             guardrails, and is supervised by human specialists at every step.
+          </p>
+          <p className="text-ghost/70 text-sm max-w-2xl mb-6 border-l-2 border-teal/30 pl-4">
+            Beyond our standard 40 agents, we build <span className="text-teal font-medium">custom agents</span> tailored
+            to your specific workflows — because your business isn&apos;t a template, and neither are our solutions.
           </p>
 
           {/* Escalation matrix inline */}
