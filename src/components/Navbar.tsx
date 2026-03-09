@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -30,12 +31,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-teal to-lavender flex items-center justify-center font-[var(--font-display)] font-bold text-midnight text-sm tracking-tight group-hover:scale-110 transition-transform">
-            ST
-          </div>
-          <span className="font-[var(--font-display)] font-semibold text-lg tracking-tight">
-            Solynta<span className="text-teal">Talent</span>
-          </span>
+          <Image
+            src="/logo.png"
+            alt="Solynta Talent"
+            width={160}
+            height={45}
+            className="h-9 w-auto group-hover:brightness-110 transition-all"
+            priority
+          />
         </a>
 
         {/* Desktop links */}

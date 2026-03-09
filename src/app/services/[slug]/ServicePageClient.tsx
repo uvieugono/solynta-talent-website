@@ -3,6 +3,7 @@ import { ServiceData } from "@/lib/services";
 import { illustrationMap } from "@/components/ServiceIllustrations";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
+import Image from "next/image";
 import { services } from "@/lib/services";
 
 export default function ServicePageClient({ service }: { service: ServiceData }) {
@@ -26,12 +27,14 @@ export default function ServicePageClient({ service }: { service: ServiceData })
             <span className="text-sm">All Services</span>
           </Link>
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal to-lavender flex items-center justify-center font-[var(--font-display)] font-bold text-midnight text-xs">
-              ST
-            </div>
-            <span className="font-[var(--font-display)] font-semibold text-sm tracking-tight hidden sm:inline">
-              Solynta<span className="text-teal">Talent</span>
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Solynta Talent"
+              width={140}
+              height={40}
+              className="h-8 w-auto"
+              priority
+            />
           </Link>
           <a
             href="https://calendly.com/uvieugono"

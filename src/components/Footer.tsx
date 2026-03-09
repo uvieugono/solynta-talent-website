@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="relative py-12 border-t border-white/5">
@@ -5,12 +7,13 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal to-lavender flex items-center justify-center font-[var(--font-display)] font-bold text-midnight text-xs">
-              ST
-            </div>
-            <span className="font-[var(--font-display)] font-semibold text-sm tracking-tight text-ghost/60">
-              Solynta<span className="text-teal/60">Talent</span>
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Solynta Talent"
+              width={130}
+              height={36}
+              className="h-7 w-auto opacity-60 hover:opacity-100 transition-opacity"
+            />
           </div>
 
           {/* Tagline */}
