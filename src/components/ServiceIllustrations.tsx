@@ -417,6 +417,64 @@ export function InventoryIllustration({ className = "" }: { className?: string }
   );
 }
 
+export function EnterpriseIntelligenceIllustration({ className = "" }: { className?: string }) {
+  return (
+    <svg {...sharedProps} className={className}>
+      <defs>
+        <linearGradient id="ei-g1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ff6b6b" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#ff6b6b" stopOpacity="0.05" />
+        </linearGradient>
+        <linearGradient id="ei-g2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ff6b6b" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.3" />
+        </linearGradient>
+      </defs>
+      {/* Central brain/network node */}
+      <circle cx="240" cy="160" r="50" fill="url(#ei-g1)" stroke="#ff6b6b" strokeOpacity="0.3" strokeWidth="1.5" />
+      <circle cx="240" cy="160" r="30" fill="#ff6b6b" fillOpacity="0.08" stroke="#ff6b6b" strokeOpacity="0.2" strokeWidth="1" />
+      <circle cx="240" cy="160" r="8" fill="#ff6b6b" fillOpacity="0.4">
+        <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="fillOpacity" values="0.4;0.7;0.4" dur="3s" repeatCount="indefinite" />
+      </circle>
+      {/* Satellite nodes — Finance */}
+      <line x1="200" y1="130" x2="120" y2="80" stroke="#ff6b6b" strokeOpacity="0.15" strokeWidth="1" />
+      <circle cx="120" cy="80" r="18" fill="#ff6b6b" fillOpacity="0.06" stroke="#ff6b6b" strokeOpacity="0.2" />
+      <text x="120" y="84" textAnchor="middle" fontSize="9" fill="#ff6b6b" fillOpacity="0.5" fontFamily="monospace">FIN</text>
+      {/* Satellite — Sales */}
+      <line x1="280" y1="130" x2="360" y2="80" stroke="#ff6b6b" strokeOpacity="0.15" strokeWidth="1" />
+      <circle cx="360" cy="80" r="18" fill="#ff6b6b" fillOpacity="0.06" stroke="#ff6b6b" strokeOpacity="0.2" />
+      <text x="360" y="84" textAnchor="middle" fontSize="9" fill="#ff6b6b" fillOpacity="0.5" fontFamily="monospace">CRM</text>
+      {/* Satellite — Marketing */}
+      <line x1="200" y1="190" x2="110" y2="250" stroke="#ff6b6b" strokeOpacity="0.15" strokeWidth="1" />
+      <circle cx="110" cy="250" r="18" fill="#ff6b6b" fillOpacity="0.06" stroke="#ff6b6b" strokeOpacity="0.2" />
+      <text x="110" y="254" textAnchor="middle" fontSize="9" fill="#ff6b6b" fillOpacity="0.5" fontFamily="monospace">MKT</text>
+      {/* Satellite — Operations */}
+      <line x1="280" y1="190" x2="370" y2="250" stroke="#ff6b6b" strokeOpacity="0.15" strokeWidth="1" />
+      <circle cx="370" cy="250" r="18" fill="#ff6b6b" fillOpacity="0.06" stroke="#ff6b6b" strokeOpacity="0.2" />
+      <text x="370" y="254" textAnchor="middle" fontSize="9" fill="#ff6b6b" fillOpacity="0.5" fontFamily="monospace">OPS</text>
+      {/* Orbiting dot */}
+      <circle cx="240" cy="160" r="0" fill="#ff6b6b" fillOpacity="0.6">
+        <animateMotion dur="6s" repeatCount="indefinite" path="M0,-50 A50,50 0 1,1 0,50 A50,50 0 1,1 0,-50" />
+        <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite" />
+      </circle>
+      {/* Shield icon (governance) */}
+      <path d="M230,270 L240,264 L250,270 L250,285 Q240,292 230,285 Z" fill="#ff6b6b" fillOpacity="0.15" stroke="#ff6b6b" strokeOpacity="0.3" strokeWidth="1" />
+      <path d="M237,276 L240,279 L246,272" stroke="#ff6b6b" strokeOpacity="0.5" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      {/* KPI bars top-right */}
+      <rect x="390" y="140" width="40" height="8" rx="2" fill="#ff6b6b" fillOpacity="0.2">
+        <animate attributeName="width" values="40;55;40" dur="4s" repeatCount="indefinite" />
+      </rect>
+      <rect x="390" y="155" width="30" height="8" rx="2" fill="#ff6b6b" fillOpacity="0.15">
+        <animate attributeName="width" values="30;45;30" dur="4s" begin="0.5s" repeatCount="indefinite" />
+      </rect>
+      <rect x="390" y="170" width="50" height="8" rx="2" fill="#ff6b6b" fillOpacity="0.1">
+        <animate attributeName="width" values="50;35;50" dur="4s" begin="1s" repeatCount="indefinite" />
+      </rect>
+    </svg>
+  );
+}
+
 export const illustrationMap: Record<string, React.FC<{ className?: string }>> = {
   "finance-core": FinanceIllustration,
   "sales-crm-web": SalesCrmIllustration,
@@ -425,5 +483,6 @@ export const illustrationMap: Record<string, React.FC<{ className?: string }>> =
   "marketing": MarketingIllustration,
   "embedded-developers": DevIllustration,
   "data-science": DataScienceIllustration,
+  "enterprise-intelligence": EnterpriseIntelligenceIllustration,
   "inventory-management": InventoryIllustration,
 };

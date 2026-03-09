@@ -75,14 +75,23 @@ const agentGroups = [
     color: "border-emerald-400/30 bg-emerald-400/5",
     tagColor: "bg-emerald-400/10 text-emerald-400",
     agents: [
-      { name: "The Insight Engine", role: "Analytics & BI", desc: "Cross-business KPI dashboards, forecasting, board-ready executive reports" },
-      { name: "The Strategy Advisor", role: "Strategic Intelligence", desc: "Competitor benchmarking, scenario modelling, risk assessment, growth strategy" },
       { name: "The Data Scientist", role: "ML & Predictive", desc: "ML model development, feature engineering, model training/tuning, statistical analysis" },
       { name: "The Data Engineer", role: "Data Pipelines", desc: "ETL/ELT pipelines, data warehouse design, source integrations, data quality validation" },
       { name: "The ML Engineer", role: "MLOps", desc: "Model deployment, MLOps, model monitoring, drift detection, automated retraining" },
       { name: "The Business Analyst", role: "Business Analysis", desc: "Requirements gathering, stakeholder reports, EDA, trend analysis, data storytelling" },
       { name: "The BI Developer", role: "BI Development", desc: "Dashboard design, KPI tracking, data visualization, executive reporting, real-time analytics" },
       { name: "The Data Analyst", role: "Data Analysis", desc: "Ad-hoc analysis, SQL queries, statistical testing, funnel analysis, cohort analysis" },
+    ],
+  },
+  {
+    module: "Enterprise Intelligence",
+    color: "border-rose-400/30 bg-rose-400/5",
+    tagColor: "bg-rose-400/10 text-rose-400",
+    agents: [
+      { name: "The Insight Engine", role: "Analytics & BI", desc: "Cross-business KPI dashboards, forecasting, board-ready executive reports" },
+      { name: "The Strategy Advisor", role: "Strategic Intelligence", desc: "Competitor benchmarking, scenario modelling, risk assessment, growth strategy" },
+      { name: "The Audit Sentinel", role: "Compliance", desc: "Confidence-based review, audit trail, compliance monitoring, escalation enforcement" },
+      { name: "The Knowledge Architect", role: "Onboarding", desc: "Client data ingestion, AI readiness, SOP extraction, knowledge base building" },
     ],
   },
   {
@@ -94,15 +103,6 @@ const agentGroups = [
       { name: "The Procurement Analyst", role: "Procurement", desc: "PO creation/tracking, supplier management, GRN processing, 3-way matching, cost optimization" },
       { name: "The Demand Forecaster", role: "Forecasting", desc: "AI-powered demand forecasting, seasonal analysis, safety stock optimization, reorder tuning" },
       { name: "The Warehouse Manager", role: "Warehouse Ops", desc: "Warehouse operations, bin management, pick/pack/dispatch, barcode/RFID, space optimization" },
-    ],
-  },
-  {
-    module: "Quality & Compliance",
-    color: "border-rose-400/30 bg-rose-400/5",
-    tagColor: "bg-rose-400/10 text-rose-400",
-    agents: [
-      { name: "The Audit Sentinel", role: "Compliance", desc: "Confidence-based review, audit trail, compliance monitoring, escalation enforcement" },
-      { name: "The Knowledge Architect", role: "Onboarding", desc: "Client data ingestion, AI readiness, SOP extraction, knowledge base building" },
     ],
   },
 ];

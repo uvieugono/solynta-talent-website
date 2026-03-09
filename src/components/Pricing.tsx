@@ -28,7 +28,7 @@ const packages = [
   },
   {
     name: "Full Enterprise",
-    price: "$3,050",
+    price: "$3,550",
     desc: "Your complete business OS",
     services: [
       { name: "Finance Core", price: "$500/mo" },
@@ -38,6 +38,7 @@ const packages = [
       { name: "Marketing Growth", price: "$800/mo" },
       { name: "Embedded Dev", price: "$500/mo" },
       { name: "Data Science", price: "$250/mo" },
+      { name: "Enterprise Intel.", price: "$500/mo" },
       { name: "Inventory", price: "$250/mo" },
     ],
     saves: "$100,000+/mo",
@@ -53,6 +54,7 @@ const pricingTable = [
   { service: "Marketing Dept.", icon: "📣", entry: "$500", growth: "$800", enterprise: "$1,200" },
   { service: "Embedded Developers", icon: "💻", entry: "$500", growth: "$1,000", enterprise: "$1,800" },
   { service: "Data Science", icon: "📊", entry: "$250", growth: "$600", enterprise: "$1,200" },
+  { service: "Enterprise Intel.", icon: "🧠", entry: "$500", growth: "$1,000", enterprise: "$2,000" },
   { service: "Inventory Mgmt.", icon: "📦", entry: "$250", growth: "$600", enterprise: "$1,200" },
 ];
 
@@ -187,7 +189,7 @@ export default function Pricing() {
             </table>
           </div>
           <p className="text-center text-xs text-ghost/50 mt-4">
-            All 9 services at entry tiers = $2,750/mo total. Mix and match tiers across services.
+            All 9 services at entry tiers = $3,250/mo total. Mix and match tiers across services.
           </p>
         </ScrollReveal>
       </div>
