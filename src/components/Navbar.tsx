@@ -57,12 +57,10 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://calendly.com/uvieugono"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/consultation"
             className="relative px-6 py-2.5 text-sm font-medium rounded-full bg-teal text-midnight hover:bg-teal/90 transition-all duration-300 hover:shadow-lg hover:shadow-teal/20"
           >
-            Book Discovery Call
+            Free AI Analysis
           </a>
         </div>
 
@@ -104,13 +102,11 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://calendly.com/uvieugono"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/consultation"
             onClick={() => setOpen(false)}
             className="inline-block mt-2 px-6 py-2.5 text-sm font-medium rounded-full bg-teal text-midnight"
           >
-            Book Discovery Call
+            Free AI Analysis
           </a>
         </div>
       )}

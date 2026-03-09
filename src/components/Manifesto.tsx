@@ -504,13 +504,11 @@ export default function Manifesto() {
               <ScrollReveal delay={400}>
                 <div className="inline-flex flex-col sm:flex-row gap-4 mb-6">
                   <a
-                    href="https://calendly.com/uvieugono"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/consultation"
                     className="group relative px-10 py-4 rounded-full bg-teal text-midnight font-semibold text-lg hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400 overflow-hidden"
                   >
                     <span className="relative z-10">
-                      Stop Building Back Offices
+                      Get Your Free AI Analysis
                     </span>
                     <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {/* Shimmer sweep on hover */}

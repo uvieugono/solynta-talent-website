@@ -37,7 +37,7 @@ export default function ServicePageClient({ service }: { service: ServiceData })
             />
           </Link>
           <a
-            href="https://calendly.com/uvieugono"
+            href="/consultation"
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2 text-xs font-medium rounded-full bg-teal text-midnight hover:bg-teal/90 transition-all"
@@ -77,7 +77,7 @@ export default function ServicePageClient({ service }: { service: ServiceData })
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href="https://calendly.com/uvieugono"
+                    href="/consultation"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-8 py-3.5 rounded-full bg-teal text-midnight font-semibold text-sm hover:shadow-2xl hover:shadow-teal/25 transition-all duration-300"
@@ -333,7 +333,7 @@ export default function ServicePageClient({ service }: { service: ServiceData })
               and get you live within two weeks.
             </p>
             <a
-              href="https://calendly.com/uvieugono"
+              href="/consultation"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-10 py-4 rounded-full bg-teal text-midnight font-bold text-base hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400 glow-teal"

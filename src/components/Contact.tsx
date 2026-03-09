@@ -77,12 +77,10 @@ export default function Contact() {
 
         <ScrollReveal delay={300}>
           <a
-            href="https://calendly.com/uvieugono"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/consultation"
             className="inline-block px-10 py-4 rounded-full bg-teal text-midnight font-bold text-base hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400 glow-teal"
           >
-            Book Your Free Discovery Call →
+            Get Your Free AI Business Analysis →
           </a>
         </ScrollReveal>
       </div>

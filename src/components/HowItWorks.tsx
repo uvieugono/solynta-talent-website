@@ -4,9 +4,9 @@ import ScrollReveal from "./ScrollReveal";
 const steps = [
   {
     num: "01",
-    title: "Discovery Call",
-    desc: "Tell us where your business is today, what’s working and where the gaps are. We map the right services to your priorities.",
-    timing: "Day 0 — FREE",
+    title: "AI Consultation",
+    desc: "Take our 5-minute AI business assessment. Our AI analyses your operations and delivers a custom roadmap with recommendations, pricing, and ROI projections — instantly.",
+    timing: "5 minutes — FREE",
     color: "border-teal",
   },
   {
@@ -87,12 +87,10 @@ export default function HowItWorks() {
               </p>
             </div>
             <a
-              href="https://calendly.com/uvieugono"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/consultation"
               className="inline-block px-6 py-3 rounded-full bg-teal text-midnight font-semibold text-sm hover:shadow-lg hover:shadow-teal/20 transition-all whitespace-nowrap"
             >
-              Claim Your Free Audit
+              Start Free AI Analysis
             </a>
           </div>
         </ScrollReveal>
