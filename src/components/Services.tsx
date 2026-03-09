@@ -14,7 +14,7 @@ export default function Services() {
             Service Modules
           </p>
           <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 max-w-3xl">
-            8 modules. Your complete operations suite.
+            9 modules. Your complete operations suite.
           </h2>
           <p className="text-ghost text-lg max-w-2xl mb-16">
             Choose any combination of services. Pay only for what you need. Add more as you grow.

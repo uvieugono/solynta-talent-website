@@ -187,7 +187,7 @@ export default function Pricing() {
             </table>
           </div>
           <p className="text-center text-xs text-ghost/50 mt-4">
-            All 8 services at entry tiers = $2,750/mo total. Mix and match tiers across services.
+            All 9 services at entry tiers = $2,750/mo total. Mix and match tiers across services.
           </p>
         </ScrollReveal>
       </div>

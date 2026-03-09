@@ -33,7 +33,7 @@ export default function DeliveryModel() {
                 </div>
                 <div>
                   <h3 className="font-[var(--font-display)] text-xl font-bold text-teal">
-                    40 AI Agents
+                    41 AI Agents
                   </h3>
                   <p className="text-xs text-ghost/60">Handle 70&ndash;85% of every workflow</p>
                 </div>
@@ -106,7 +106,7 @@ export default function DeliveryModel() {
               title: "AI Ops Specialists",
               subtitle: "Your Day-to-Day Team",
               items: [
-                "Trained operators across all 8 modules",
+                "Trained operators across all 9 modules",
                 "Review & approve AI suggestions",
                 "Dedicated point of contact per service",
                 "Client comms in professional English",

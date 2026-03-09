@@ -4,13 +4,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Solynta Talent | Business Operations as a Service",
   description:
-    "AI-augmented business operations — Finance, Sales, Marketing, HR, Dev, Data Science & more. 40 AI agents. 8 service modules. From $250/month.",
+    "AI-augmented business operations — Finance, Sales, Marketing, HR, Dev, Data Science & more. 41 AI agents. 9 service modules. From $250/month.",
   keywords:
     "BOaaS, business operations, AI operations, outsourced finance, AI agents, SolyntaFlow, ERP",
   openGraph: {
     title: "Solynta Talent — Where Talent Meets Intelligence",
     description:
-      "8 AI-augmented service modules. Pick what you need. Pay only for what you use.",
+      "9 AI-augmented service modules. Pick what you need. Pay only for what you use.",
     type: "website",
     url: "https://www.solyntalent.com",
   },
