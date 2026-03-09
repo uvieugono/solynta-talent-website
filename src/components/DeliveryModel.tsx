@@ -17,8 +17,8 @@ export default function DeliveryModel() {
               AI + Human Excellence
             </h2>
             <p className="text-ghost text-lg max-w-2xl mx-auto">
-              AI does 70&ndash;85% of the cognitive work. Trained specialists review, approve and escalate.
-              You get accuracy and speed at a fraction of the cost.
+              Across every service module, AI handles 70&ndash;85% of the cognitive work.
+              Trained specialists review, approve and escalate &mdash; so you get speed, accuracy and accountability at a fraction of the cost.
             </p>
           </div>
         </ScrollReveal>
@@ -33,21 +33,21 @@ export default function DeliveryModel() {
                 </div>
                 <div>
                   <h3 className="font-[var(--font-display)] text-xl font-bold text-teal">
-                    The AI Engine
+                    40 AI Agents
                   </h3>
-                  <p className="text-xs text-ghost/60">Handles 70&ndash;85% of work</p>
+                  <p className="text-xs text-ghost/60">Handle 70&ndash;85% of every workflow</p>
                 </div>
               </div>
               <ul className="space-y-3">
                 {[
-                  "Transaction classification & categorisation",
-                  "Reconciliation across all platforms",
-                  "Variance analysis & anomaly flagging",
-                  "Draft financial commentary & reports",
-                  "Cash flow forecasting & trend analysis",
-                  "Confidence scoring on every decision",
-                  "CRM data enrichment & lead research",
-                  "Customer query drafting & triage",
+                  "Classify, categorise and route incoming data",
+                  "Draft reports, emails, content and code",
+                  "Reconcile records across platforms and sources",
+                  "Detect anomalies, variances and risks",
+                  "Forecast trends, demand and cash flow",
+                  "Score leads, tickets and transactions by confidence",
+                  "Automate repetitive workflows end-to-end",
+                  "Surface insights from cross-module data",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-ghost/80">
                     <span className="text-teal mt-0.5">⚡</span>
@@ -68,19 +68,19 @@ export default function DeliveryModel() {
                   <h3 className="font-[var(--font-display)] text-xl font-bold text-lavender">
                     Our Specialists
                   </h3>
-                  <p className="text-xs text-ghost/60">Review, approve & escalate</p>
+                  <p className="text-xs text-ghost/60">Review, approve &amp; escalate</p>
                 </div>
               </div>
               <ul className="space-y-3">
                 {[
-                  "Review & approve AI-generated outputs",
-                  "Escalate edge cases to Senior Supervisors",
-                  "Validate high-risk or complex transactions",
-                  "Communicate in professional English",
-                  "Quality-check all reports before delivery",
-                  "Manage compliance boundaries & audit logs",
-                  "Coordinate between tools and workflows",
-                  "Maintain your knowledge base & SOPs",
+                  "Review & approve every AI-generated output",
+                  "Validate complex or high-risk decisions",
+                  "Escalate edge cases to senior supervisors",
+                  "Communicate with your team in professional English",
+                  "Quality-check all deliverables before handoff",
+                  "Manage compliance, audit trails and governance",
+                  "Coordinate workflows across service modules",
+                  "Maintain your knowledge base, SOPs and context",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-ghost/80">
                     <span className="text-lavender mt-0.5">✓</span>
@@ -106,9 +106,9 @@ export default function DeliveryModel() {
               title: "AI Ops Specialists",
               subtitle: "Your Day-to-Day Team",
               items: [
-                "Trained AI-assisted operators",
+                "Trained operators across all 8 modules",
                 "Review & approve AI suggestions",
-                "Dedicated point of contact",
+                "Dedicated point of contact per service",
                 "Client comms in professional English",
               ],
               color: "border-teal/20",
@@ -118,10 +118,10 @@ export default function DeliveryModel() {
               title: "Senior Supervisors",
               subtitle: "Quality Gate",
               items: [
-                "4–7 years accounting experience",
-                "Handle VAT & tax complexity",
-                "Approve high-risk transactions",
-                "Month-end review & QA",
+                "Domain experts (finance, tech, marketing)",
+                "Handle complex or high-value decisions",
+                "Approve high-risk outputs before delivery",
+                "Monthly review & quality assurance",
               ],
               color: "border-gold/20",
             },
@@ -130,10 +130,10 @@ export default function DeliveryModel() {
               title: "Escalation Advisors",
               subtitle: "Rare — High Impact",
               items: [
-                "External fractional CPA/advisor",
-                "Policy interpretation & audit prep",
-                "UK/US market specialists",
-                "Complex edge case handling",
+                "Fractional CPAs, CTOs & domain advisors",
+                "Policy interpretation & strategic guidance",
+                "UK/US/African market specialists",
+                "Complex edge cases & audit preparation",
               ],
               color: "border-coral/20",
             },
