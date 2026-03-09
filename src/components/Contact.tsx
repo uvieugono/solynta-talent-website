@@ -52,11 +52,11 @@ export default function Contact() {
         <ScrollReveal delay={200}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
             <a
-              href="mailto:hello@solyntatalent.com"
+              href="mailto:hello@solyntalent.com"
               className="flex items-center gap-2 text-ghost hover:text-teal transition-colors"
             >
               <span>📧</span>
-              <span className="text-sm">hello@solyntatalent.com</span>
+              <span className="text-sm">hello@solyntalent.com</span>
             </a>
             <a
               href="tel:+15043236957"
@@ -66,11 +66,11 @@ export default function Contact() {
               <span className="text-sm">+1 (504) 323-6957</span>
             </a>
             <a
-              href="https://www.solyntatalent.com"
+              href="https://www.solyntalent.com"
               className="flex items-center gap-2 text-ghost hover:text-teal transition-colors"
             >
               <span>🌐</span>
-              <span className="text-sm">www.solyntatalent.com</span>
+              <span className="text-sm">www.solyntalent.com</span>
             </a>
           </div>
         </ScrollReveal>

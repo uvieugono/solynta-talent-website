@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "8 AI-augmented service modules. Pick what you need. Pay only for what you use.",
     type: "website",
-    url: "https://www.solyntatalent.com",
+    url: "https://www.solyntalent.com",
   },
 };
 
