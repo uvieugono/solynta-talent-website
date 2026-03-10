@@ -8,7 +8,7 @@
 
 // ── Placeholder IDs — replace with real values ──────────────────────────
 export const GA_MEASUREMENT_ID = "G-ZVC7R06Y33";
-export const FB_PIXEL_ID = "XXXXXXXXXXXXXXXXX"; // TODO: Replace with real Facebook Pixel ID
+export const FB_PIXEL_ID = "26717215457902140";
 
 // ── Type declarations for global tracking functions ─────────────────────
 declare global {
