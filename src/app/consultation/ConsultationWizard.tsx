@@ -391,7 +391,7 @@ export default function ConsultationWizard() {
   function handleCurrencyChange(c: Currency) {
     setCurrency(c);
     const isNgnCode = formData.budget_range.startsWith("ngn-");
-    const isUsdCode = !isNgnCode && formData.budget_range !== "";
+    const isUsdCode = !isNgnCode && formData.budget_range !== "" && formData.budget_range !== "flexible";
     if ((c === "NGN" && isUsdCode) || (c === "USD" && isNgnCode)) {
       updateField("budget_range", "");
     }
