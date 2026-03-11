@@ -95,6 +95,15 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
             <div
               key={mod.key}
               onClick={() => handleCardClick(mod)}
+              role="button"
+              tabIndex={0}
+              aria-pressed={isSelected}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleCardClick(mod);
+                }
+              }}
               className={`relative rounded-xl border transition-all duration-200 cursor-pointer ${
                 fullPage ? "p-6" : "p-5"
               } ${
@@ -111,7 +120,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                     handleRemove(mod.key);
                   }}
                   className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-full bg-white/10 text-ghost/60 hover:bg-white/20 hover:text-white-soft text-xs transition-all"
-                  aria-label="Remove module"
+                  aria-label={`Remove ${mod.name}`}
                 >
                   ×
                 </button>
