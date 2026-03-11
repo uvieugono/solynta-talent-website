@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
+import { Currency, MODULES as PRICING_MODULES, formatPrice, getModulePrice } from "@/lib/pricing";
 
 const API_BASE = "https://solyntaflow.uc.r.appspot.com";
 
@@ -70,6 +71,7 @@ interface AnalysisReport {
     phase_3: { title: string; modules: string[]; tasks: string[]; deliverables: string[] };
   };
   financial_analysis: {
+    currency?: 'USD' | 'NGN';
     monthly_investment: number;
     annual_investment: number;
     estimated_current_cost: number;
@@ -203,6 +205,15 @@ const BUDGET_RANGES = [
   { value: "2000-5000", label: "$2,000 - $5,000/mo" },
   { value: "5000+", label: "$5,000+/mo" },
   { value: "flexible", label: "Flexible / ROI-driven" },
+];
+
+const NGN_BUDGET_RANGES = [
+  { value: "ngn-under-200k", label: "Under ₦200,000/mo" },
+  { value: "ngn-200k-400k",  label: "₦200,000 – ₦400,000/mo" },
+  { value: "ngn-400k-800k",  label: "₦400,000 – ₦800,000/mo" },
+  { value: "ngn-800k-2m",    label: "₦800,000 – ₦2,000,000/mo" },
+  { value: "ngn-2m-plus",    label: "₦2,000,000+/mo" },
+  { value: "flexible",       label: "Flexible / ROI-driven" },
 ];
 
 const MODULES = [
@@ -375,6 +386,16 @@ export default function ConsultationWizard() {
   const [error, setError] = useState<string | null>(null);
   const [toolSearch, setToolSearch] = useState("");
   const [analyzingPhase, setAnalyzingPhase] = useState(0);
+  const [currency, setCurrency] = useState<Currency>("USD");
+
+  function handleCurrencyChange(c: Currency) {
+    setCurrency(c);
+    const isNgnCode = formData.budget_range.startsWith("ngn-");
+    const isUsdCode = !isNgnCode && formData.budget_range !== "";
+    if ((c === "NGN" && isUsdCode) || (c === "USD" && isNgnCode)) {
+      updateField("budget_range", "");
+    }
+  }
 
   // Analysis phases animation
   useEffect(() => {
@@ -462,6 +483,7 @@ export default function ConsultationWizard() {
         needs_data_science: formData.needs_data_science,
         needs_enterprise_intel: formData.needs_enterprise_intel,
         needs_inventory: formData.needs_inventory,
+        pricing_currency: currency,
       };
     }
 
@@ -678,7 +700,7 @@ export default function ConsultationWizard() {
 
   // ─── Report View ───
   if (step === 6 && analysisReport) {
-    return <ReportView report={analysisReport} companyName={formData.company_name} contactName={formData.contact_name} />;
+    return <ReportView report={analysisReport} companyName={formData.company_name} contactName={formData.contact_name} currency={currency} />;
   }
 
   // ─── Wizard Steps ───
@@ -713,6 +735,24 @@ export default function ConsultationWizard() {
                 ? "Our AI will analyze your operations and deliver a comprehensive roadmap in minutes — not weeks."
                 : "Your personalized business analysis is ready."}
             </p>
+          </div>
+
+          {/* Currency toggle */}
+          <div className="flex justify-center gap-2 mb-6">
+            {(["USD", "NGN"] as Currency[]).map((c) => (
+              <button
+                key={c}
+                onClick={() => handleCurrencyChange(c)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  currency === c
+                    ? "bg-teal text-midnight"
+                    : "bg-white/5 text-ghost border border-white/10 hover:border-teal/30"
+                }`}
+              >
+                <span>{c === "USD" ? "🇺🇸" : "🇳🇬"}</span>
+                <span>{c}</span>
+              </button>
+            ))}
           </div>
 
           {/* Progress Bar */}
@@ -780,10 +820,11 @@ export default function ConsultationWizard() {
                 formData={formData}
                 updateField={updateField}
                 toggleArrayItem={toggleArrayItem}
+                currency={currency}
               />
             )}
             {step === 5 && (
-              <StepModules formData={formData} updateField={updateField} />
+              <StepModules formData={formData} updateField={updateField} currency={currency} />
             )}
           </div>
 
@@ -1001,10 +1042,12 @@ function StepChallenges({
   formData,
   updateField,
   toggleArrayItem,
+  currency,
 }: {
   formData: FormData;
   updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
   toggleArrayItem: (key: keyof FormData, item: string) => void;
+  currency: Currency;
 }) {
   return (
     <div className="space-y-6">
@@ -1074,13 +1117,21 @@ function StepChallenges({
       {/* Timeline & Budget */}
       <div className="grid sm:grid-cols-2 gap-4">
         <SelectField label="When do you want to start?" value={formData.timeline} onChange={(v) => updateField("timeline", v)} options={TIMELINES} placeholder="Select timeline" />
-        <SelectField label="Monthly budget range" value={formData.budget_range} onChange={(v) => updateField("budget_range", v)} options={BUDGET_RANGES} placeholder="Select range" />
+        <SelectField label="Monthly budget range" value={formData.budget_range} onChange={(v) => updateField("budget_range", v)} options={currency === "NGN" ? NGN_BUDGET_RANGES : BUDGET_RANGES} placeholder="Select range" />
       </div>
     </div>
   );
 }
 
-function StepModules({ formData, updateField }: { formData: FormData; updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void }) {
+const NEEDS_TO_MODULE_KEY: Record<string, string> = {
+  needs_finance: 'finance', needs_sales_crm: 'sales_crm_web',
+  needs_customer_service: 'customer_service', needs_hr: 'hr_admin',
+  needs_marketing: 'marketing', needs_developers: 'developers',
+  needs_data_science: 'data_science', needs_enterprise_intel: 'enterprise_intel',
+  needs_inventory: 'inventory',
+};
+
+function StepModules({ formData, updateField, currency }: { formData: FormData; updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void; currency: Currency }) {
   const selectedCount = MODULES.filter((m) => formData[m.key as keyof FormData]).length;
 
   return (
@@ -1117,7 +1168,14 @@ function StepModules({ formData, updateField }: { formData: FormData; updateFiel
               </div>
               <p className="text-ghost text-xs mb-2">{mod.desc}</p>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-teal/70">{mod.price}</span>
+                <span className="text-xs font-mono text-teal/70">
+                  {(() => {
+                    const pricingKey = NEEDS_TO_MODULE_KEY[mod.key];
+                    const pricingMod = PRICING_MODULES.find(m => m.key === pricingKey);
+                    if (!pricingMod) return mod.price;
+                    return `${pricingMod.tiers ? 'from ' : ''}${formatPrice(getModulePrice(pricingMod, 'entry', currency), currency)}/mo`;
+                  })()}
+                </span>
                 <span className="text-xs text-ghost">{mod.agents} AI agents</span>
               </div>
             </button>
@@ -1138,7 +1196,21 @@ function StepModules({ formData, updateField }: { formData: FormData; updateFiel
 
 // ─── Report View Component ───
 
-function ReportView({ report, companyName, contactName }: { report: AnalysisReport; companyName: string; contactName: string }) {
+function ReportView({
+  report,
+  companyName,
+  contactName,
+  currency = "USD",
+}: {
+  report: AnalysisReport;
+  companyName: string;
+  contactName: string;
+  currency?: Currency;
+}) {
+  const sym = (report.financial_analysis?.currency ?? currency) === "NGN" ? "₦" : "$";
+  const fmtNum = (n: number | undefined) =>
+    new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(n ?? 0);
+
   const [activeSection, setActiveSection] = useState("summary");
 
   const sections = [
@@ -1194,12 +1266,12 @@ function ReportView({ report, companyName, contactName }: { report: AnalysisRepo
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
               <StatCard
                 label="Monthly Investment"
-                value={`$${report.financial_analysis.monthly_investment?.toLocaleString() || 0}`}
+                value={`${sym}${fmtNum(report.financial_analysis.monthly_investment)}`}
                 sub="per month"
               />
               <StatCard
                 label="Annual Savings"
-                value={`$${report.financial_analysis.annual_savings?.toLocaleString() || 0}`}
+                value={`${sym}${fmtNum(report.financial_analysis.annual_savings)}`}
                 sub="vs. in-house"
                 accent
               />
@@ -1311,7 +1383,7 @@ function ReportView({ report, companyName, contactName }: { report: AnalysisRepo
                     </div>
                     <div className="flex items-center gap-4 flex-shrink-0">
                       <div className="text-right">
-                        <div className="font-mono text-teal font-semibold">${mod.monthly_cost}/mo</div>
+                        <div className="font-mono text-teal font-semibold">{sym}{fmtNum(mod.monthly_cost)}/mo</div>
                         <div className="text-ghost text-xs capitalize">{mod.recommended_tier} tier</div>
                       </div>
                     </div>
@@ -1420,12 +1492,12 @@ function ReportView({ report, companyName, contactName }: { report: AnalysisRepo
             <div className="grid sm:grid-cols-3 gap-4 mb-6">
               <div className="p-5 rounded-xl bg-navy border border-white/8 text-center">
                 <div className="text-ghost text-xs uppercase mb-1">Your Investment</div>
-                <div className="font-display text-2xl font-bold text-white-soft">${report.financial_analysis.monthly_investment?.toLocaleString()}<span className="text-sm text-ghost">/mo</span></div>
-                <div className="text-ghost text-xs mt-1">${report.financial_analysis.annual_investment?.toLocaleString()}/year</div>
+                <div className="font-display text-2xl font-bold text-white-soft">{sym}{fmtNum(report.financial_analysis.monthly_investment)}<span className="text-sm text-ghost">/mo</span></div>
+                <div className="text-ghost text-xs mt-1">{sym}{fmtNum(report.financial_analysis.annual_investment)}/year</div>
               </div>
               <div className="p-5 rounded-xl bg-teal/5 border border-teal/20 text-center">
                 <div className="text-teal text-xs uppercase mb-1">You Save</div>
-                <div className="font-display text-2xl font-bold text-teal">${report.financial_analysis.annual_savings?.toLocaleString()}<span className="text-sm text-teal/70">/yr</span></div>
+                <div className="font-display text-2xl font-bold text-teal">{sym}{fmtNum(report.financial_analysis.annual_savings)}<span className="text-sm text-teal/70">/yr</span></div>
                 <div className="text-ghost text-xs mt-1">vs. in-house equivalent</div>
               </div>
               <div className="p-5 rounded-xl bg-gold/5 border border-gold/20 text-center">
@@ -1452,7 +1524,7 @@ function ReportView({ report, companyName, contactName }: { report: AnalysisRepo
                         <span className="text-sm text-white-soft">{item.module}</span>
                         <span className="text-xs text-ghost ml-2">replaces {item.replaces}</span>
                       </div>
-                      <span className="font-mono text-teal text-sm">${item.monthly}/mo</span>
+                      <span className="font-mono text-teal text-sm">{sym}{fmtNum(item.monthly)}/mo</span>
                     </div>
                   ))}
                 </div>
