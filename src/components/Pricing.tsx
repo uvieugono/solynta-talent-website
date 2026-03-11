@@ -1,5 +1,6 @@
 "use client";
 import ScrollReveal from "./ScrollReveal";
+import StackCalculator from "./StackCalculator";
 
 const packages = [
   {
@@ -46,17 +47,6 @@ const packages = [
   },
 ];
 
-const pricingTable = [
-  { service: "Finance Core", icon: "💰", entry: "$500", growth: "—", enterprise: "—" },
-  { service: "Sales, CRM & Web", icon: "📈", entry: "$250", growth: "—", enterprise: "—" },
-  { service: "AI Customer Service", icon: "💬", entry: "$250", growth: "—", enterprise: "—" },
-  { service: "HR & Admin Ops", icon: "👥", entry: "$250", growth: "—", enterprise: "—" },
-  { service: "Marketing Dept.", icon: "📣", entry: "$500", growth: "$800", enterprise: "$1,200" },
-  { service: "Embedded Developers", icon: "💻", entry: "$500", growth: "$1,000", enterprise: "$1,800" },
-  { service: "Data Science", icon: "📊", entry: "$250", growth: "$600", enterprise: "$1,200" },
-  { service: "Enterprise Intel.", icon: "🧠", entry: "$500", growth: "$1,000", enterprise: "$2,000" },
-  { service: "Inventory Mgmt.", icon: "📦", entry: "$250", growth: "$600", enterprise: "$1,200" },
-];
 
 export default function Pricing() {
   return (
@@ -138,59 +128,28 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Full pricing table */}
+        {/* Interactive Stack Calculator */}
         <ScrollReveal>
-          <h3 className="font-[var(--font-display)] text-2xl font-bold text-center mb-8">
-            Build Your Own Package
-          </h3>
+          <div className="text-center mb-8">
+            <h3 className="font-[var(--font-display)] text-2xl font-bold mb-2">
+              Build Your Own Package
+            </h3>
+            <p className="text-ghost text-sm max-w-xl mx-auto">
+              Select the services you need. Prices update instantly — toggle between USD and NGN.
+            </p>
+          </div>
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[600px]">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left py-4 px-4 text-sm font-medium text-ghost/60">
-                    Service Module
-                  </th>
-                  <th className="text-center py-4 px-4 text-sm font-medium text-ghost/60">
-                    Entry
-                  </th>
-                  <th className="text-center py-4 px-4 text-sm font-medium text-ghost/60">
-                    Growth
-                  </th>
-                  <th className="text-center py-4 px-4 text-sm font-medium text-ghost/60">
-                    Enterprise
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {pricingTable.map((row, i) => (
-                  <tr
-                    key={i}
-                    className="border-b border-white/5 hover:bg-white/[0.02] transition-colors"
-                  >
-                    <td className="py-4 px-4 text-sm">
-                      <span className="mr-2">{row.icon}</span>
-                      {row.service}
-                    </td>
-                    <td className="py-4 px-4 text-center text-sm font-mono text-teal">
-                      {row.entry}
-                    </td>
-                    <td className="py-4 px-4 text-center text-sm font-mono text-ghost/60">
-                      {row.growth}
-                    </td>
-                    <td className="py-4 px-4 text-center text-sm font-mono text-ghost/60">
-                      {row.enterprise}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <StackCalculator />
+          <div className="text-center mt-6">
+            <a
+              href="/calculator"
+              className="text-sm text-teal hover:text-teal/80 transition-colors"
+            >
+              Open full calculator →
+            </a>
           </div>
-          <p className="text-center text-xs text-ghost/50 mt-4">
-            All 9 services at entry tiers = $3,250/mo total. Mix and match tiers across services.
-          </p>
         </ScrollReveal>
       </div>
     </section>
