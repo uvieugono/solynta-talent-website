@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 
 const API_BASE = "https://solyntaflow.uc.r.appspot.com";
 
@@ -111,7 +109,11 @@ declare module "jspdf" {
   }
 }
 
-function generatePDF(data: ReportData) {
+async function generatePDF(data: ReportData) {
+  const jsPDFModule = await import("jspdf");
+  const jsPDF = jsPDFModule.default;
+  await import("jspdf-autotable");
+
   const report = data.analysis!;
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const pageW = doc.internal.pageSize.getWidth();
@@ -421,11 +423,11 @@ export default function ConsultationReportPage({ params }: { params: Promise<{ i
   const [resolvedId, setResolvedId] = useState<string | null>(null);
   const [downloading, setDownloading] = useState(false);
 
-  const handleDownloadPDF = useCallback(() => {
+  const handleDownloadPDF = useCallback(async () => {
     if (!reportData) return;
     setDownloading(true);
     try {
-      generatePDF(reportData);
+      await generatePDF(reportData);
     } finally {
       setDownloading(false);
     }
