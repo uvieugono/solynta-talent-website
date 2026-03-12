@@ -283,10 +283,6 @@ export async function generateReportPDF(data: PDFReportInput) {
   for (const m of report.recommended_modules) {
     checkPage(35);
 
-    // Module card with light background
-    const cardStartY = y - 2;
-    doc.setFillColor(...LIGHT_BG);
-
     // Module header
     doc.setFontSize(11);
     doc.setTextColor(...DARK);
@@ -359,14 +355,7 @@ export async function generateReportPDF(data: PDFReportInput) {
       y += 5;
     }
 
-    // Draw card background (now we know height)
-    const cardH = y - cardStartY + 2;
-    // Go back and draw the background behind the text
-    doc.setFillColor(245, 247, 250);
-    doc.roundedRect(margin, cardStartY, contentW, cardH, 2, 2, "F");
-
-    // Unfortunately jsPDF draws in order, so we need to redraw text on top.
-    // Instead, let's just add a bottom border for separation.
+    // Separator line between modules
     doc.setDrawColor(220, 225, 235);
     doc.setLineWidth(0.3);
     doc.line(margin, y, margin + contentW, y);
