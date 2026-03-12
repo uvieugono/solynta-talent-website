@@ -1256,6 +1256,7 @@ function ReportView({
                   await generateReportPDF({
                     company_name: companyName,
                     contact_name: contactName,
+                    currency: currency,
                     analysis: report,
                   });
                 }}

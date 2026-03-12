@@ -18,6 +18,7 @@ interface ReportData {
   recommended_modules: RecommendedModule[] | null;
   estimated_monthly_cost: string | null;
   estimated_annual_savings: string | null;
+  pricing_currency: string;
   created_at: string;
   completed_at: string | null;
 }
@@ -118,6 +119,7 @@ export default function ConsultationReportPage({ params }: { params: Promise<{ i
         company_name: reportData.company_name,
         contact_name: reportData.contact_name,
         completed_at: reportData.completed_at,
+        currency: reportData.pricing_currency === "USD" ? "USD" : "NGN",
         analysis: reportData.analysis!,
       });
     } finally {
@@ -182,6 +184,7 @@ export default function ConsultationReportPage({ params }: { params: Promise<{ i
   }
 
   const report = reportData.analysis;
+  const sym = reportData.pricing_currency === "USD" ? "$" : "\u20A6";
   const tabs = ["Summary", "Assessment", "Modules", "Roadmap", "Financial", "Onboarding", "Next Steps"];
 
   return (
@@ -229,8 +232,8 @@ export default function ConsultationReportPage({ params }: { params: Promise<{ i
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <StatCard label="Modules" value={String(report.recommended_modules.length)} />
           <StatCard label="AI Agents" value={String(report.recommended_modules.reduce((a, m) => a + (m.agents_deployed?.length || 0), 0))} />
-          <StatCard label="Monthly" value={`$${report.financial_analysis.monthly_investment.toLocaleString()}`} />
-          <StatCard label="Annual Savings" value={`$${report.financial_analysis.annual_savings.toLocaleString()}`} accent />
+          <StatCard label="Monthly" value={`${sym}${report.financial_analysis.monthly_investment.toLocaleString()}`} />
+          <StatCard label="Annual Savings" value={`${sym}${report.financial_analysis.annual_savings.toLocaleString()}`} accent />
         </div>
 
         {/* Tabs */}
@@ -310,7 +313,7 @@ export default function ConsultationReportPage({ params }: { params: Promise<{ i
                         <span className="text-xs text-ghost">{m.recommended_tier} tier &middot; {m.agents_deployed?.length || 0} agents</span>
                       </div>
                       <div className="text-right">
-                        <div className="text-lg font-bold text-teal">${m.monthly_cost}/mo</div>
+                        <div className="text-lg font-bold text-teal">{sym}{m.monthly_cost.toLocaleString()}/mo</div>
                         <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium uppercase border ${priorityColor(m.priority)}`}>
                           {m.priority}
                         </span>
@@ -380,10 +383,10 @@ export default function ConsultationReportPage({ params }: { params: Promise<{ i
           {activeTab === 4 && (
             <Section title="Financial Analysis">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                <StatCard label="Monthly Cost" value={`$${report.financial_analysis.monthly_investment.toLocaleString()}`} />
-                <StatCard label="Annual Cost" value={`$${report.financial_analysis.annual_investment.toLocaleString()}`} />
-                <StatCard label="In-House Equivalent" value={`$${report.financial_analysis.estimated_current_cost.toLocaleString()}`} />
-                <StatCard label="Annual Savings" value={`$${report.financial_analysis.annual_savings.toLocaleString()}`} accent />
+                <StatCard label="Monthly Cost" value={`${sym}${report.financial_analysis.monthly_investment.toLocaleString()}`} />
+                <StatCard label="Annual Cost" value={`${sym}${report.financial_analysis.annual_investment.toLocaleString()}`} />
+                <StatCard label="In-House Equivalent" value={`${sym}${report.financial_analysis.estimated_current_cost.toLocaleString()}`} />
+                <StatCard label="Annual Savings" value={`${sym}${report.financial_analysis.annual_savings.toLocaleString()}`} accent />
               </div>
               <div className="grid sm:grid-cols-3 gap-4 mb-6">
                 <div className="p-4 rounded-xl bg-teal/5 border border-teal/10 text-center">
@@ -413,7 +416,7 @@ export default function ConsultationReportPage({ params }: { params: Promise<{ i
                       {report.financial_analysis.cost_breakdown.map((row, i) => (
                         <tr key={i} className="border-t border-white/5">
                           <td className="px-4 py-3 text-sm text-white-soft">{row.module}</td>
-                          <td className="px-4 py-3 text-sm text-teal text-right">${row.monthly.toLocaleString()}</td>
+                          <td className="px-4 py-3 text-sm text-teal text-right">{sym}{row.monthly.toLocaleString()}</td>
                           <td className="px-4 py-3 text-sm text-ghost/70">{row.replaces}</td>
                         </tr>
                       ))}
