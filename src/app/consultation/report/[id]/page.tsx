@@ -112,7 +112,10 @@ declare module "jspdf" {
 async function generatePDF(data: ReportData) {
   const jsPDFModule = await import("jspdf");
   const jsPDF = jsPDFModule.default;
-  await import("jspdf-autotable");
+  const autoTableModule = await import("jspdf-autotable");
+  if (autoTableModule.applyPlugin) {
+    autoTableModule.applyPlugin(jsPDF);
+  }
 
   const report = data.analysis!;
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
