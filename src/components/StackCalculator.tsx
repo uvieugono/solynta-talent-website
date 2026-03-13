@@ -28,6 +28,7 @@ function initialSelected(): Selected {
 export default function StackCalculator({ fullPage = false }: { fullPage?: boolean }) {
   const [currency, setCurrency] = useState<Currency>("USD");
   const [selected, setSelected] = useState<Selected>(initialSelected);
+  const [hoveredTier, setHoveredTier] = useState<{ key: ModuleKey; tier: Tier } | null>(null);
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
@@ -79,7 +80,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                 : "bg-slate-dark/50 text-ghost border border-white/10 hover:border-teal/30"
             }`}
           >
-            <span>{c === "USD" ? "🇺🇸" : "🇳🇬"}</span>
+            <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : "\u{1F1F3}\u{1F1EC}"}</span>
             <span>{c}</span>
           </button>
         ))}
@@ -90,6 +91,8 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
         {MODULES.map((mod) => {
           const isSelected = selected[mod.key] !== false;
           const currentTier = (selected[mod.key] as Tier | false) || "entry";
+          const showTooltip = hoveredTier && hoveredTier.key === mod.key;
+          const tooltipDetail = showTooltip ? mod.tierDetails?.[hoveredTier!.tier] : null;
 
           return (
             <div
@@ -122,7 +125,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                   className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-full bg-white/10 text-ghost/60 hover:bg-white/20 hover:text-white-soft text-xs transition-all"
                   aria-label={`Remove ${mod.name}`}
                 >
-                  ×
+                  &times;
                 </button>
               )}
 
@@ -151,7 +154,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                 <ul className="space-y-1 mb-3">
                   {mod.features.map((f, i) => (
                     <li key={i} className="flex items-start gap-1.5 text-xs text-ghost/70">
-                      <span className="text-teal/70 mt-0.5 shrink-0">✓</span>
+                      <span className="text-teal/70 mt-0.5 shrink-0">&#10003;</span>
                       <span>{f}</span>
                     </li>
                   ))}
@@ -168,13 +171,15 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
               {/* Tier selector — tiered modules when selected */}
               {isSelected && mod.tiers && (
                 <div
-                  className="flex gap-1.5 mt-3"
+                  className="flex gap-1.5 mt-3 relative"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {TIERS.filter((t) => mod.usd[t.key] !== undefined).map((t) => (
                     <button
                       key={t.key}
                       onClick={() => handleTierChange(mod.key, t.key)}
+                      onMouseEnter={() => mod.tierDetails && setHoveredTier({ key: mod.key, tier: t.key })}
+                      onMouseLeave={() => setHoveredTier(null)}
                       className={`flex-1 py-1 rounded text-xs font-medium transition-all duration-150 ${
                         currentTier === t.key
                           ? "bg-teal text-midnight"
@@ -189,10 +194,84 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                   ))}
                 </div>
               )}
+
+              {/* Tier features tooltip on hover */}
+              {showTooltip && tooltipDetail && (
+                <div
+                  className="absolute left-0 right-0 top-full mt-2 z-30 rounded-xl bg-midnight/95 border border-teal/30 shadow-2xl shadow-black/50 backdrop-blur-xl p-4 pointer-events-none"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-bold text-white-soft">{tooltipDetail.name}</span>
+                    <span className="text-xs font-mono text-teal">
+                      {formatPrice(getModulePrice(mod, hoveredTier!.tier, currency), currency)}/mo
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-ghost/50 mb-2">{tooltipDetail.subtitle}</p>
+                  <ul className="space-y-1">
+                    {tooltipDetail.features.map((f, i) => {
+                      const isHeader = f.startsWith("Everything in");
+                      return (
+                        <li key={i} className={`text-[11px] ${isHeader ? "text-ghost/40 italic" : "text-ghost/70"} flex items-start gap-1.5`}>
+                          {!isHeader && <span className="text-teal/60 shrink-0">&#10003;</span>}
+                          <span>{f}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  {tooltipDetail.roles && (
+                    <div className="text-[10px] text-ghost/40 mt-2 pt-2 border-t border-white/5">
+                      {tooltipDetail.roles}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+
+      {/* Tier features for selected tiered module (mobile-friendly, below cards) */}
+      {selectedModules.some((m) => m.tiers && m.tierDetails) && (
+        <div className="mb-6 space-y-3 lg:hidden">
+          {selectedModules
+            .filter((m) => m.tiers && m.tierDetails)
+            .map((m) => {
+              const tier = selected[m.key] as Tier;
+              const detail = m.tierDetails![tier];
+              if (!detail) return null;
+              return (
+                <div key={m.key} className="rounded-xl border border-teal/20 bg-teal/5 p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-bold text-white-soft">
+                      {m.icon} {detail.name}
+                    </span>
+                    <span className="text-xs font-mono text-teal">
+                      {formatPrice(getModulePrice(m, tier, currency), currency)}/mo
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-ghost/50 mb-2">{detail.subtitle}</p>
+                  <ul className="space-y-1">
+                    {detail.features.map((f, i) => {
+                      const isHeader = f.startsWith("Everything in");
+                      return (
+                        <li key={i} className={`text-xs ${isHeader ? "text-ghost/40 italic" : "text-ghost/70"} flex items-start gap-1.5`}>
+                          {!isHeader && <span className="text-teal/60 shrink-0">&#10003;</span>}
+                          <span>{f}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  {detail.roles && (
+                    <div className="text-[10px] text-ghost/40 mt-2 pt-2 border-t border-white/5">
+                      {detail.roles}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+        </div>
+      )}
 
       {/* Live total bar */}
       <div className="rounded-xl border border-white/10 bg-slate-dark/50 p-4">
@@ -241,7 +320,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                     href="/consultation"
                     className="bg-teal text-midnight font-semibold text-sm px-5 py-2.5 rounded-full hover:shadow-lg hover:shadow-teal/20 transition-all duration-200 whitespace-nowrap"
                   >
-                    Get Started →
+                    Get Started &rarr;
                   </Link>
                 )}
               </div>

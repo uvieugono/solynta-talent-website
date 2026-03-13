@@ -1,10 +1,25 @@
 "use client";
+import { useState } from "react";
 import { ServiceData } from "@/lib/services";
 import { illustrationMap } from "@/components/ServiceIllustrations";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 import Image from "next/image";
 import { services } from "@/lib/services";
+import { MODULES, type Currency, type Tier, formatPrice, getModulePrice } from "@/lib/pricing";
+
+/** Map service slug to pricing module key */
+const SLUG_TO_KEY: Record<string, string> = {
+  "finance-core": "finance",
+  "sales-crm-web": "sales_crm_web",
+  "customer-service": "customer_service",
+  "hr-admin": "hr_admin",
+  "marketing": "marketing",
+  "embedded-developers": "developers",
+  "data-science": "data_science",
+  "enterprise-intelligence": "enterprise_intel",
+  "inventory-management": "inventory",
+};
 
 export default function ServicePageClient({ service }: { service: ServiceData }) {
   const Illustration = illustrationMap[service.slug];
@@ -142,6 +157,14 @@ export default function ServicePageClient({ service }: { service: ServiceData })
           </div>
         </div>
       </section>
+
+      {/* ====== TIER PRICING ====== */}
+      {(() => {
+        const mod = MODULES.find((m) => m.key === SLUG_TO_KEY[service.slug]);
+        if (!mod?.tierDetails) return null;
+        const tiers: Tier[] = (["entry", "growth", "enterprise"] as Tier[]).filter((t) => mod.tierDetails![t]);
+        return <TierPricingSection mod={mod} tiers={tiers} service={service} />;
+      })()}
 
       {/* ====== AI AGENTS ====== */}
       <section className="relative py-24 overflow-hidden">
@@ -393,5 +416,133 @@ export default function ServicePageClient({ service }: { service: ServiceData })
         </div>
       </footer>
     </main>
+  );
+}
+
+/* ── Tier Pricing Section (rendered only for tiered modules) ──────────── */
+
+import type { ModuleDefinition } from "@/lib/pricing";
+
+function TierPricingSection({
+  mod,
+  tiers,
+  service,
+}: {
+  mod: ModuleDefinition;
+  tiers: Tier[];
+  service: ServiceData;
+}) {
+  const [currency, setCurrency] = useState<Currency>("USD");
+
+  return (
+    <section id="pricing" className="relative py-24">
+      <div className="absolute inset-0 bg-gradient-to-b from-midnight via-navy to-midnight" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <ScrollReveal>
+          <div className="text-center mb-6">
+            <p className="text-xs uppercase tracking-[0.3em] text-teal mb-4 font-medium">
+              Choose Your Tier
+            </p>
+            <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold leading-tight mb-4">
+              Simple, scalable pricing
+            </h2>
+            <p className="text-ghost text-lg max-w-2xl mx-auto mb-8">
+              Start small and upgrade as you grow. All plans include FREE AI Readiness Onboarding.
+            </p>
+          </div>
+
+          {/* Currency toggle */}
+          <div className="flex items-center justify-center gap-2 mb-12">
+            {(["USD", "NGN"] as Currency[]).map((c) => (
+              <button
+                key={c}
+                onClick={() => setCurrency(c)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  currency === c
+                    ? "bg-teal text-midnight"
+                    : "bg-slate-dark/50 text-ghost border border-white/10 hover:border-teal/30"
+                }`}
+              >
+                <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : "\u{1F1F3}\u{1F1EC}"}</span>
+                <span>{c}</span>
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        <div className={`grid gap-6 ${tiers.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
+          {tiers.map((tierKey, i) => {
+            const detail = mod.tierDetails![tierKey]!;
+            const price = getModulePrice(mod, tierKey, currency);
+            const isFeatured = detail.popular;
+
+            return (
+              <ScrollReveal key={tierKey} delay={i * 100}>
+                <div
+                  className={`relative rounded-2xl p-8 h-full flex flex-col ${
+                    isFeatured
+                      ? "bg-teal/5 border-2 border-teal/40"
+                      : "bg-slate-dark/40 border border-white/10"
+                  }`}
+                >
+                  {isFeatured && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-teal text-midnight text-[10px] font-bold uppercase tracking-wider">
+                      Most Popular
+                    </div>
+                  )}
+
+                  <h3 className="font-[var(--font-display)] text-xl font-bold text-white-soft mb-1">
+                    {detail.name}
+                  </h3>
+                  <p className="text-sm text-ghost/60 mb-5">{detail.subtitle}</p>
+
+                  <div className="mb-6">
+                    <span className="font-[var(--font-display)] text-4xl font-bold text-white-soft">
+                      {formatPrice(price, currency)}
+                    </span>
+                    <span className="text-ghost/50 text-sm">/mo</span>
+                  </div>
+
+                  <ul className="space-y-2.5 flex-1 mb-6">
+                    {detail.features.map((f, j) => {
+                      const isHeader = f.startsWith("Everything in");
+                      return (
+                        <li key={j} className={`flex items-start gap-2 text-sm ${isHeader ? "text-ghost/50 italic mb-1" : "text-ghost/80"}`}>
+                          {!isHeader && <span className={`mt-0.5 shrink-0 ${service.accent}`}>&#10003;</span>}
+                          <span>{f}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  {detail.roles && (
+                    <div className="text-xs text-ghost/50 border-t border-white/5 pt-3 mb-4">
+                      {detail.roles}
+                    </div>
+                  )}
+
+                  <a
+                    href="/consultation"
+                    className={`block text-center py-3 rounded-full font-medium text-sm transition-all duration-300 ${
+                      isFeatured
+                        ? "bg-teal text-midnight hover:shadow-lg hover:shadow-teal/20"
+                        : "border border-white/10 text-white-soft hover:border-teal/40 hover:bg-white/5"
+                    }`}
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+
+        <ScrollReveal delay={300}>
+          <p className="text-center text-xs text-ghost/40 mt-8">
+            No long-term contracts. Day 1 deployment. Upgrade or downgrade at any time.
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
   );
 }
