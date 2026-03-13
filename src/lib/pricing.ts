@@ -96,6 +96,21 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Website SEO & content updates', 'CRM pipeline management', 'Lead tracking & outreach', 'Monthly performance reports'],
     usd: { entry: 250 },
     ngn: { entry: 45000 },
+    tierDetails: {
+      entry: {
+        name: 'Sales, CRM & Web',
+        subtitle: 'Your complete growth engine',
+        roles: 'Growth Engine + CRM Specialist + Digital Architect + Sales Ops',
+        features: [
+          'Website SEO & content updates',
+          'CRM pipeline setup & management',
+          'Lead tracking, scoring & outreach',
+          'Email campaign creation & nurturing',
+          'Sales funnel optimisation',
+          'Monthly performance & conversion reports',
+        ],
+      },
+    },
   },
   {
     key: 'customer_service',
@@ -106,6 +121,21 @@ export const MODULES: ModuleDefinition[] = [
     features: ['24/7 AI chat on your website', 'Email triage & auto-responses', 'Escalation to human agents', 'Monthly interaction reports'],
     usd: { entry: 250 },
     ngn: { entry: 25000 },
+    tierDetails: {
+      entry: {
+        name: 'AI Customer Service',
+        subtitle: 'Always-on support for your customers',
+        roles: '24/7 Responder + Email Triage Agent + Website Chatbot',
+        features: [
+          '24/7 AI-powered chat on your website',
+          'Email triage & intelligent auto-responses',
+          'FAQ & knowledge base management',
+          'Escalation routing to human agents',
+          'Customer sentiment tracking',
+          'Monthly interaction & satisfaction reports',
+        ],
+      },
+    },
   },
   {
     key: 'hr_admin',
@@ -116,6 +146,21 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Onboarding & offboarding workflows', 'Leave tracking & HR records', 'Vendor & procurement management', 'IT asset & access management'],
     usd: { entry: 250 },
     ngn: { entry: 25000 },
+    tierDetails: {
+      entry: {
+        name: 'HR & Admin Ops',
+        subtitle: 'Streamlined people & office operations',
+        roles: 'HR Admin + Procurement Agent + IT Admin',
+        features: [
+          'Employee onboarding & offboarding workflows',
+          'Leave tracking & HR records management',
+          'Payroll data preparation & handoff',
+          'Vendor & procurement management',
+          'IT asset tracking & access management',
+          'Monthly HR & admin operations report',
+        ],
+      },
+    },
   },
   {
     key: 'marketing',

@@ -29,6 +29,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
   const [currency, setCurrency] = useState<Currency>("USD");
   const [selected, setSelected] = useState<Selected>(initialSelected);
   const [hoveredTier, setHoveredTier] = useState<{ key: ModuleKey; tier: Tier } | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<ModuleKey | null>(null);
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
@@ -91,8 +92,13 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
         {MODULES.map((mod) => {
           const isSelected = selected[mod.key] !== false;
           const currentTier = (selected[mod.key] as Tier | false) || "entry";
-          const showTooltip = hoveredTier && hoveredTier.key === mod.key;
-          const tooltipDetail = showTooltip ? mod.tierDetails?.[hoveredTier!.tier] : null;
+          const showTierTooltip = hoveredTier && hoveredTier.key === mod.key;
+          const showCardTooltip = !mod.tiers && hoveredCard === mod.key && mod.tierDetails?.entry;
+          const tooltipDetail = showTierTooltip
+            ? mod.tierDetails?.[hoveredTier!.tier]
+            : showCardTooltip
+              ? mod.tierDetails?.entry
+              : null;
 
           return (
             <div
@@ -107,6 +113,8 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                   handleCardClick(mod);
                 }
               }}
+              onMouseEnter={() => !mod.tiers && mod.tierDetails && setHoveredCard(mod.key)}
+              onMouseLeave={() => !mod.tiers && setHoveredCard(null)}
               className={`relative rounded-xl border transition-all duration-200 cursor-pointer ${
                 fullPage ? "p-6" : "p-5"
               } ${
@@ -196,7 +204,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
               )}
 
               {/* Tier features tooltip on hover */}
-              {showTooltip && tooltipDetail && (
+              {(showTierTooltip || showCardTooltip) && tooltipDetail && (
                 <div
                   className="absolute left-0 right-0 top-full mt-2 z-30 rounded-xl bg-midnight/95 border border-teal/30 shadow-2xl shadow-black/50 backdrop-blur-xl p-4 pointer-events-none"
                   onClick={(e) => e.stopPropagation()}
@@ -204,7 +212,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-bold text-white-soft">{tooltipDetail.name}</span>
                     <span className="text-xs font-mono text-teal">
-                      {formatPrice(getModulePrice(mod, hoveredTier!.tier, currency), currency)}/mo
+                      {formatPrice(getModulePrice(mod, showTierTooltip ? hoveredTier!.tier : "entry", currency), currency)}/mo
                     </span>
                   </div>
                   <p className="text-[10px] text-ghost/50 mb-2">{tooltipDetail.subtitle}</p>
@@ -231,11 +239,11 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
         })}
       </div>
 
-      {/* Tier features for selected tiered module (mobile-friendly, below cards) */}
-      {selectedModules.some((m) => m.tiers && m.tierDetails) && (
+      {/* Tier features for selected modules (mobile-friendly, below cards) */}
+      {selectedModules.some((m) => m.tierDetails) && (
         <div className="mb-6 space-y-3 lg:hidden">
           {selectedModules
-            .filter((m) => m.tiers && m.tierDetails)
+            .filter((m) => m.tierDetails)
             .map((m) => {
               const tier = selected[m.key] as Tier;
               const detail = m.tierDetails![tier];
