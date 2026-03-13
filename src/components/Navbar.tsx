@@ -1,13 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 const links = [
-  { href: "#services", label: "Services" },
-  { href: "#platform", label: "Platform" },
-  { href: "#agents", label: "AI Agents" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#how-it-works", label: "How It Works" },
+  { href: "/#services", label: "Services" },
+  { href: "/#platform", label: "Platform" },
+  { href: "/#agents", label: "AI Agents" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#how-it-works", label: "How It Works" },
 ];
 
 export default function Navbar() {
@@ -30,7 +31,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logo.png"
             alt="Solynta Talent"
@@ -39,29 +40,29 @@ export default function Navbar() {
             className="h-9 w-auto group-hover:brightness-110 transition-all"
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className="text-sm text-ghost hover:text-teal transition-colors duration-300 tracking-wide"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
-          <a
+          <Link
             href="/consultation"
             className="relative px-6 py-2.5 text-sm font-medium rounded-full bg-teal text-midnight hover:bg-teal/90 transition-all duration-300 hover:shadow-lg hover:shadow-teal/20"
           >
             Free AI Analysis
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -92,22 +93,22 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-navy/95 backdrop-blur-xl border-t border-white/5 px-6 py-6 space-y-4 animate-fade-in">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
               className="block text-base text-ghost hover:text-teal transition-colors"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             href="/consultation"
             onClick={() => setOpen(false)}
             className="inline-block mt-2 px-6 py-2.5 text-sm font-medium rounded-full bg-teal text-midnight"
           >
             Free AI Analysis
-          </a>
+          </Link>
         </div>
       )}
     </nav>
