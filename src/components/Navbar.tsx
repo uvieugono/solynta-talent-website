@@ -8,6 +8,7 @@ const links = [
   { href: "/#platform", label: "Platform" },
   { href: "/#agents", label: "AI Agents" },
   { href: "/#pricing", label: "Pricing" },
+  { href: "/calculator", label: "Build Your Own Package" },
   { href: "/#how-it-works", label: "How It Works" },
 ];
 
