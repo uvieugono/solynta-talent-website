@@ -30,10 +30,10 @@ export const MODULES: ModuleDefinition[] = [
     icon: '💰',
     name: 'Finance Core',
     desc: 'Bookkeeper · Accountant · Payroll · Tax',
-    tiers: false,
+    tiers: true,
     features: ['Daily bookkeeping & reconciliation', 'P&L, balance sheet & cash flow', 'Full payroll computation & payslips', 'Tax filing & compliance'],
-    usd: { entry: 500 },
-    ngn: { entry: 100000 },
+    usd: { entry: 250, growth: 375, enterprise: 500 },
+    ngn: { entry: 25000, growth: 50000, enterprise: 100000 },
   },
   {
     key: 'sales_crm_web',
@@ -103,7 +103,7 @@ export const MODULES: ModuleDefinition[] = [
     tiers: true,
     features: ['Competitor benchmarking reports', 'Board-ready strategic analysis', 'AI governance & audit trails', 'Knowledge base management'],
     usd: { entry: 500, growth: 1000, enterprise: 2000 },
-    ngn: { entry: 50000, growth: 75000, enterprise: 100000 },
+    ngn: { entry: 25000, growth: 50000, enterprise: 100000 },
   },
   {
     key: 'inventory',
@@ -113,7 +113,7 @@ export const MODULES: ModuleDefinition[] = [
     tiers: true,
     features: ['Real-time stock tracking', 'AI demand forecasting', 'Purchase order automation', 'Shopify / WooCommerce integration'],
     usd: { entry: 250, growth: 600, enterprise: 1200 },
-    ngn: { entry: 50000, growth: 100000, enterprise: 200000 },
+    ngn: { entry: 50000, growth: 75000, enterprise: 100000 },
   },
 ]
 

@@ -27,7 +27,7 @@ export default function Contact() {
         <ScrollReveal delay={100}>
           <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 mb-12">
             {[
-              { icon: "💰", name: "Finance", price: "$500" },
+              { icon: "💰", name: "Finance", price: "fr$250" },
               { icon: "📈", name: "Sales", price: "$250" },
               { icon: "💬", name: "CS", price: "$250" },
               { icon: "👥", name: "HR", price: "$250" },

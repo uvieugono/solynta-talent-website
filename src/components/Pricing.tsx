@@ -5,10 +5,10 @@ import StackCalculator from "./StackCalculator";
 const packages = [
   {
     name: "Startup Essentials",
-    price: "$750",
+    price: "$500",
     desc: "Get the fundamentals right",
     services: [
-      { name: "Finance Core", price: "$500/mo" },
+      { name: "Finance Core", price: "fr $250/mo" },
       { name: "AI Customer Service", price: "$250/mo" },
     ],
     saves: "$17,000+/mo",
@@ -16,10 +16,10 @@ const packages = [
   },
   {
     name: "Growth Operations",
-    price: "$1,250",
+    price: "$1,000",
     desc: "Scaled ops for growing teams",
     services: [
-      { name: "Finance Core", price: "$500/mo" },
+      { name: "Finance Core", price: "fr $250/mo" },
       { name: "Sales, CRM & Web", price: "$250/mo" },
       { name: "AI Customer Service", price: "$250/mo" },
       { name: "HR & Admin Ops", price: "$250/mo" },
@@ -29,18 +29,18 @@ const packages = [
   },
   {
     name: "Full Enterprise",
-    price: "$3,550",
+    price: "$3,000",
     desc: "Your complete business OS",
     services: [
-      { name: "Finance Core", price: "$500/mo" },
+      { name: "Finance Core", price: "fr $250/mo" },
       { name: "Sales, CRM & Web", price: "$250/mo" },
       { name: "AI Customer Service", price: "$250/mo" },
       { name: "HR & Admin Ops", price: "$250/mo" },
-      { name: "Marketing Growth", price: "$800/mo" },
-      { name: "Embedded Dev", price: "$500/mo" },
-      { name: "Data Science", price: "$250/mo" },
-      { name: "Enterprise Intel.", price: "$500/mo" },
-      { name: "Inventory", price: "$250/mo" },
+      { name: "Marketing", price: "fr $500/mo" },
+      { name: "Embedded Dev", price: "fr $500/mo" },
+      { name: "Data Science", price: "fr $250/mo" },
+      { name: "Enterprise Intel.", price: "fr $500/mo" },
+      { name: "Inventory", price: "fr $250/mo" },
     ],
     saves: "$100,000+/mo",
     featured: false,
