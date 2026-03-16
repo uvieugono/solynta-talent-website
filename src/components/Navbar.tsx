@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const links = [
+  { href: "/#use-cases", label: "Use Cases" },
   { href: "/#services", label: "Services" },
   { href: "/#platform", label: "Platform" },
   { href: "/#agents", label: "AI Agents" },

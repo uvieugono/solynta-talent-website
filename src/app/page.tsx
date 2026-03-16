@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Manifesto from "@/components/Manifesto";
 import Challenge from "@/components/Challenge";
+import UseCases from "@/components/UseCases";
 import Services from "@/components/Services";
 import Platform from "@/components/Platform";
 import Agents from "@/components/Agents";
@@ -20,6 +21,7 @@ export default function Home() {
       <Hero />
       <Manifesto />
       <Challenge />
+      <UseCases />
       <Services />
       <Platform />
       <Agents />
