@@ -458,7 +458,7 @@ export const services: ServiceData[] = [
     faq: [
       { q: "What platforms do you manage?", a: "Facebook, Instagram, LinkedIn, Twitter/X, TikTok, YouTube, Google Ads, Meta Ads and LinkedIn Ads." },
       { q: "Do you create the actual graphics and videos?", a: "We create design briefs, scripts and storyboards. Canva designs are created in-house. For premium video production, we partner with specialists." },
-      { q: "What's the difference between $500 and $1,200/mo tiers?", a: "Essentials ($500): 3 platforms, Facebook/Instagram ads, content calendar, email newsletters, graphic design, GA4 reporting. Growth ($800): adds Google Ads, automation, LinkedIn/TikTok, WhatsApp lead capture, A/B testing, video. Pro ($1,200): adds SEO programme, blog articles, CRO, competitor intelligence, CMO function." },
+      { q: "What's the difference between $500 and $1,200/mo tiers?", a: "Essentials ($500): 3 platforms, Facebook/Instagram ads, content calendar, email newsletters, graphic design, GA4 reporting. Growth ($800): adds Google Ads, automation, LinkedIn/TikTok, WhatsApp lead capture, A/B testing, social media management. Pro ($1,200): adds SEO programme, blog articles, CRO, competitor intelligence, short-form video production, CMO function." },
       { q: "How do you measure ROI?", a: "Multi-touch attribution tracking, conversion pixel data, UTM parameters and direct revenue attribution where possible." },
     ],
   },

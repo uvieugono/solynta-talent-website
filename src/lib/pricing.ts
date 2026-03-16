@@ -197,7 +197,7 @@ export const MODULES: ModuleDefinition[] = [
           'LinkedIn ads (B2B) or TikTok (B2C)',
           'Messenger & WhatsApp lead capture',
           'A/B testing of ads, pages & CTAs',
-          'Short-form video & weekly reporting',
+          'Social media management (3 platforms)',
         ],
       },
       enterprise: {
@@ -210,6 +210,7 @@ export const MODULES: ModuleDefinition[] = [
           'Blog articles & lead magnet creation',
           'Conversion rate optimisation (CRO)',
           'Competitor intelligence & market trends',
+          'Short-form video & creative production',
         ],
       },
     },
