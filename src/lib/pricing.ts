@@ -141,7 +141,7 @@ export const MODULES: ModuleDefinition[] = [
     key: 'hr_admin',
     icon: '👥',
     name: 'HR & Admin Ops',
-    desc: 'HR Admin · Procurement · IT Admin',
+    desc: 'HR Admin · Office Mgr · Procurement · IT Admin',
     tiers: false,
     features: ['Onboarding & offboarding workflows', 'Leave tracking & HR records', 'Vendor & procurement management', 'IT asset & access management'],
     usd: { entry: 250 },
@@ -150,7 +150,7 @@ export const MODULES: ModuleDefinition[] = [
       entry: {
         name: 'HR & Admin Ops',
         subtitle: 'Streamlined people & office operations',
-        roles: 'HR Admin + Procurement Agent + IT Admin',
+        roles: 'HR Admin + Office Manager + Procurement Agent + IT Admin',
         features: [
           'Employee onboarding & offboarding workflows',
           'Leave tracking & HR records management',

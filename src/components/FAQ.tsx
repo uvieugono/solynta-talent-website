@@ -76,7 +76,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What sales and marketing roles does this replace?",
-        a: "This module replaces a Sales Development Rep, CRM Administrator, Web Developer and SEO Specialist \u2014 four roles that would cost $13,450+/month to hire. Our four AI agents (Growth Engine, Digital Architect, CRM Specialist and Sales Ops Analyst) handle website development, SEO optimisation, CRM pipeline management, lead scoring, outreach sequences and performance reporting. A human growth strategist oversees the entire pipeline.",
+        a: "This module replaces a Web Developer, SEO Consultant, CRM Specialist and Customer Support Staff \u2014 four roles that would cost $14,200+/month to hire. Our four AI agents handle professional website build/redesign, SEO & Google My Business optimisation, CRM data cleaning & pipeline management, automated lead follow-up, and weekly pipeline/forecast reports. Platforms supported: HubSpot, Pipedrive, Google My Business, WordPress/Webflow, GA4, Mailchimp/ActiveCampaign. A human growth strategist oversees the entire pipeline.",
       },
       {
         q: "How do AI agents manage our sales pipeline?",
@@ -103,7 +103,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What customer service roles does this replace?",
-        a: "This module replaces 1\u20133 full-time customer service representatives, saving $2,750+/month. Three AI agents \u2014 the 24/7 Responder, Email Triage Agent and Website Chatbot \u2014 handle customer inquiries across WhatsApp, email and web chat around the clock. They are trained on YOUR business data, not generic responses. Human agents handle complex escalations and sensitive situations.",
+        a: "This module replaces 1\u20133 full-time customer service representatives, saving $3,000+/month. Three AI agents \u2014 the WhatsApp Business Bot, Email Inbox AI and Website Chatbot \u2014 handle customer inquiries across WhatsApp, email and web chat around the clock. No per-message fees. They are trained on YOUR business data, not generic responses. Human agents handle complex escalations and sensitive situations.",
       },
       {
         q: "How does the AI handle customer conversations?",
@@ -130,7 +130,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What HR and admin roles does this replace?",
-        a: "HR & Admin Ops replaces an HR Administrator, Procurement Officer and IT Administrator \u2014 three roles costing $9,750+/month. Our three AI agents automate onboarding workflows, leave tracking, HR records management, vendor procurement, purchase ordering, IT asset tracking and access provisioning. A human HR specialist handles employee relations, performance conversations and sensitive matters.",
+        a: "HR & Admin Ops replaces an HR Administrator, Office Manager, Procurement Officer and IT Administrator \u2014 four roles costing $10,000\u2013$14,000/month. Our four AI agents automate onboarding workflows, leave tracking, HR records management, vendor contract digitisation, compliance database maintenance, purchase ordering, IT asset tracking and access provisioning. Platforms managed: BambooHR, Deel, Gusto, Notion/Confluence, Slack/Teams, QuickBooks/Xero. A human HR specialist handles employee relations, performance conversations and sensitive matters.",
       },
       {
         q: "How does AI handle employee onboarding?",
@@ -184,7 +184,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What development roles does this replace?",
-        a: "Depending on tier, this replaces 1\u20135 development hires: Full Stack Developer, QA Engineer, DevOps Engineer, Tech Lead and UI/UX Designer \u2014 saving $9,350+/month or more. Your developers embed directly in your team: they work in your codebase, use your tools, attend your standups and deliver within your sprint cycles. AI augmentation means each developer produces 3x the output of a traditional hire.",
+        a: "Depending on tier, this replaces 1\u20135 development hires: Full Stack Developer, QA Engineer, UI/UX Designer, DevOps Engineer and Tech Lead \u2014 saving $11,150+/month or more. Your developers embed directly in your team: they work in your codebase, use your tools (Slack/Jira/GitHub), attend your standups and deliver within your sprint cycles. Full IP assignment, strict NDAs. AI augmentation via Claude Code and GitHub Copilot means each developer produces 3x the output of a traditional hire.",
       },
       {
         q: "How does AI make your developers 3x faster?",
@@ -211,7 +211,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What data roles does this replace?",
-        a: "Data Science replaces up to six specialised hires: Data Scientist, Data Engineer, ML Engineer, Business Analyst, BI Developer and Data Analyst \u2014 a team that would cost $44,000+/month. Six AI agents handle everything from data cleaning and ETL pipelines to predictive models, dashboards and strategic analysis. A senior human data scientist validates all models and insights.",
+        a: "Data Science replaces up to six specialised hires: Data Scientist ($150K/yr), Data Engineer ($135K/yr), ML Engineer ($155K/yr), Business Analyst ($90K/yr), BI Developer ($95K/yr) and Data Analyst ($85K/yr) \u2014 a team that would cost $45,200+/month ($840K+/year). Six AI agents handle everything from data cleaning and ETL pipelines to predictive models, dashboards and strategic analysis. Toolkit includes Python, R, SQL, scikit-learn, TensorFlow, PyTorch, Spark, Airflow, dbt, Snowflake/BigQuery, Power BI/Tableau/Looker, AWS SageMaker/Azure ML/Vertex AI. A senior human data scientist validates all models and insights.",
       },
       {
         q: "How do AI agents build and deploy ML models?",
@@ -238,7 +238,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What strategic roles does this replace?",
-        a: "Enterprise Intelligence replaces a Chief Strategy Officer, Business Intelligence Director, Compliance Officer and Knowledge Manager \u2014 roles costing $25,000+/month combined. Four AI agents (The Insight Engine, Strategy Advisor, Audit Sentinel and Knowledge Architect) provide the strategic intelligence layer that turns data into decisions. A senior human strategist ensures insights are actionable and aligned with your business goals.",
+        a: "Enterprise Intelligence replaces a Chief Strategy Officer, Business Intelligence Director, Compliance Officer and Knowledge Manager \u2014 roles costing $40,000\u2013$69,000+/month combined. Four AI agents \u2014 The Insight Engine ($12K\u2013$18K/mo equivalent), Strategy Advisor ($15K\u2013$25K/mo), Audit Sentinel ($10K\u2013$15K/mo) and Knowledge Architect ($5K\u2013$8K/mo) \u2014 provide the strategic intelligence layer that turns data into decisions. Deliverables include weekly/monthly KPI dashboards, competitor benchmarking, board-ready executive intelligence packs, AI audit trails, and quarterly scenario & forecast reviews. A senior human strategist ensures insights are actionable and aligned with your business goals.",
       },
       {
         q: "How does AI provide strategic business intelligence?",
@@ -265,7 +265,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What inventory and supply chain roles does this replace?",
-        a: "Inventory Management replaces an Inventory Controller, Procurement Analyst, Demand Forecaster and Warehouse Manager \u2014 four roles costing $18,000+/month. Four AI agents manage your entire supply chain: real-time stock tracking, automated purchase ordering, AI-powered demand forecasting and warehouse operations optimisation. A human supply chain specialist handles vendor negotiations and strategic sourcing decisions.",
+        a: "Inventory Management replaces an Inventory Controller, Procurement Analyst, Demand Forecaster and Warehouse Manager \u2014 four roles costing $18,700\u2013$44,900+/month depending on scale. Four AI agents manage your entire supply chain: real-time stock tracking with unlimited SKUs, automated purchase ordering with 3-way matching, AI-powered demand forecasting, and warehouse operations with barcode/RFID workflows. Supports manufacturing (BOM/MRP), retail/e-commerce (multi-store sync), and wholesale/distribution (batch/lot tracking, pick/pack/dispatch). Integrates with Shopify, WooCommerce, Amazon, QuickBooks/Xero. A human supply chain specialist handles vendor negotiations and strategic sourcing decisions.",
       },
       {
         q: "How does AI-powered demand forecasting work?",
