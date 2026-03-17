@@ -49,11 +49,11 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What finance roles does this module replace?",
-        a: "Finance Core replaces up to four full-time hires: a Bookkeeper, Accountant, Payroll Officer and Tax Specialist. Our four AI agents \u2014 The Ledger Keeper, The Controller, The Payroll Officer and The Tax Guardian \u2014 handle daily transaction posting, bank reconciliation, financial reporting, payroll computation and tax compliance. A senior human finance specialist reviews every output before delivery. You get a complete finance department from $250/month instead of $15,000+/month in salaries alone.",
+        a: "Finance Core replaces up to four full-time hires: a Bookkeeper, Accountant, Payroll Officer and Tax Accountant. Our four AI agents \u2014 The Ledger Keeper, The Controller, The Payroll Officer and The Tax Guardian \u2014 handle transaction posting, bank reconciliation, financial reporting, payroll computation and tax compliance. Processing cadence scales with your tier: Essentials (weekly batch via The Friday Sync), Growth (daily processing with WhatsApp receipt snapping) and Pro (continuous near-real-time with a Dedicated Senior Finance Specialist). You get a complete finance department from $250/month instead of $15,000+/month in salaries alone.",
       },
       {
-        q: "How does AI handle my daily bookkeeping?",
-        a: "The Ledger Keeper agent processes every transaction through AI pattern recognition \u2014 classifying, posting and reconciling against your bank feeds daily with 95%+ accuracy. It auto-approves routine postings above 90% confidence and flags unusual amounts, new vendors or pattern breaks for human review. Your books are always current, not weeks behind. A task that takes a human bookkeeper 4\u20136 hours daily is completed in minutes.",
+        q: "How does AI handle my bookkeeping?",
+        a: "The Ledger Keeper agent processes every transaction through AI pattern recognition \u2014 classifying, posting and reconciling with 95%+ accuracy. At Essentials tier, this runs as a weekly batch (The Friday Sync \u2014 you upload a clean CSV bank file by Thursday evening). At Growth tier, processing is daily with WhatsApp receipt snapping. At Pro tier, processing is continuous and near-real-time. It auto-approves routine postings above 90% confidence and flags unusual amounts, new vendors or pattern breaks for human review. Bad data is rejected automatically \u2014 you re-upload, not our staff. A task that takes a human bookkeeper 4\u20136 hours daily is completed in minutes.",
       },
       {
         q: "Who reviews the financial reports before I see them?",
@@ -61,7 +61,7 @@ const categories: FAQCategory[] = [
       },
       {
         q: "How much faster and more accurate is this than an in-house team?",
-        a: "Month-end close that typically takes an in-house team 5\u201310 business days is completed in 1\u20132 days. Bank reconciliation is done daily (not monthly). Payroll computation that takes hours is done in minutes with automatic variance detection. Error rates drop by 80%+ because the AI applies rules consistently \u2014 it never has a bad day, never transposes numbers, never forgets a step. And the human review layer catches the edge cases AI might miss.",
+        a: "Month-end close that typically takes an in-house team 5\u201310 business days is completed in 1\u20132 days. Bank reconciliation runs on your tier\u2019s cadence \u2014 weekly (Essentials), daily (Growth) or continuously (Pro). Payroll computation that takes hours is done in minutes with automatic variance detection. Error rates drop by 80%+ because the AI applies rules consistently \u2014 it never has a bad day, never transposes numbers, never forgets a step. Senior supervisors approve all high-value entries. Essentials has email/ticket support (48hr SLA); Growth and Pro have priority escalation.",
       },
       {
         q: "What if I already use QuickBooks, Xero or Sage?",

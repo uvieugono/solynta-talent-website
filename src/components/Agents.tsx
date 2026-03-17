@@ -7,7 +7,7 @@ const agentGroups = [
     color: "border-teal/30 bg-teal/5",
     tagColor: "bg-teal/10 text-teal",
     agents: [
-      { name: "The Ledger Keeper", role: "Bookkeeper", desc: "Daily posting, bank reconciliation, AP/AR, invoicing, expense management" },
+      { name: "The Ledger Keeper", role: "Bookkeeper", desc: "Transaction posting (weekly batch / daily / continuous by tier), bank reconciliation, AP/AR, invoicing, expense management" },
       { name: "The Controller", role: "Accountant", desc: "Month-end close, P&L, balance sheet, variance analysis, management packs" },
       { name: "The Payroll Officer", role: "Payroll", desc: "Salary computation, statutory deductions, payslips, remittance scheduling" },
       { name: "The Tax Guardian", role: "Tax Compliance", desc: "VAT/WHT calculations, filing prep, deadline management, compliance" },

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
-import { Currency, MODULES as PRICING_MODULES, formatPrice, getModulePrice } from "@/lib/pricing";
+import { Currency, Tier, MODULES as PRICING_MODULES, formatPrice, getModulePrice } from "@/lib/pricing";
 
 const API_BASE = "https://solyntaflow.uc.r.appspot.com";
 
@@ -42,6 +42,7 @@ interface FormData {
   needs_data_science: boolean;
   needs_enterprise_intel: boolean;
   needs_inventory: boolean;
+  tier_preferences: Record<string, Tier>;
 }
 
 interface AnalysisReport {
@@ -329,6 +330,7 @@ const initialFormData: FormData = {
   needs_data_science: false,
   needs_enterprise_intel: false,
   needs_inventory: false,
+  tier_preferences: {},
 };
 
 // ─── Icon Components ───
@@ -484,6 +486,7 @@ export default function ConsultationWizard() {
         needs_enterprise_intel: formData.needs_enterprise_intel,
         needs_inventory: formData.needs_inventory,
         pricing_currency: currency,
+        tier_preferences: formData.tier_preferences,
       };
     }
 
@@ -1131,8 +1134,15 @@ const NEEDS_TO_MODULE_KEY: Record<string, string> = {
   needs_inventory: 'inventory',
 };
 
+const TIER_LABELS: Record<Tier, string> = { entry: 'Entry', growth: 'Growth', enterprise: 'Enterprise' };
+const TIER_ORDER: Tier[] = ['entry', 'growth', 'enterprise'];
+
 function StepModules({ formData, updateField, currency }: { formData: FormData; updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void; currency: Currency }) {
   const selectedCount = MODULES.filter((m) => formData[m.key as keyof FormData]).length;
+
+  const setTierPref = (moduleKey: string, tier: Tier) => {
+    updateField('tier_preferences', { ...formData.tier_preferences, [moduleKey]: tier });
+  };
 
   return (
     <div className="space-y-5">
@@ -1146,39 +1156,71 @@ function StepModules({ formData, updateField, currency }: { formData: FormData; 
       <div className="grid sm:grid-cols-2 gap-3">
         {MODULES.map((mod) => {
           const selected = formData[mod.key as keyof FormData] as boolean;
+          const pricingKey = NEEDS_TO_MODULE_KEY[mod.key];
+          const pricingMod = PRICING_MODULES.find(m => m.key === pricingKey);
+          const isTiered = pricingMod?.tiers ?? false;
+          const currentTier: Tier = formData.tier_preferences[pricingKey] || 'entry';
+
           return (
-            <button
+            <div
               key={mod.key}
-              onClick={() => updateField(mod.key as keyof FormData, !selected as never)}
               className={`p-4 rounded-xl text-left transition-all border ${
                 selected
                   ? "bg-teal/10 border-teal/40 shadow-lg shadow-teal/10"
                   : "bg-navy border-white/8 hover:border-white/20"
               }`}
             >
-              <div className="flex items-start justify-between mb-1.5">
-                <span className={`font-semibold text-sm ${selected ? "text-teal" : "text-white-soft"}`}>
-                  {mod.name}
-                </span>
-                <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  selected ? "bg-teal text-midnight" : "border border-white/20"
-                }`}>
-                  {selected && <CheckIcon />}
-                </span>
-              </div>
-              <p className="text-ghost text-xs mb-2">{mod.desc}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-teal/70">
-                  {(() => {
-                    const pricingKey = NEEDS_TO_MODULE_KEY[mod.key];
-                    const pricingMod = PRICING_MODULES.find(m => m.key === pricingKey);
-                    if (!pricingMod) return mod.price;
-                    return `${pricingMod.tiers ? 'from ' : ''}${formatPrice(getModulePrice(pricingMod, 'entry', currency), currency)}/mo`;
-                  })()}
-                </span>
-                <span className="text-xs text-ghost">{mod.agents} AI agents</span>
-              </div>
-            </button>
+              <button
+                className="w-full text-left"
+                onClick={() => {
+                  const newSelected = !selected;
+                  updateField(mod.key as keyof FormData, newSelected as never);
+                  // Set default tier to entry when selecting a tiered module
+                  if (newSelected && isTiered && !formData.tier_preferences[pricingKey]) {
+                    setTierPref(pricingKey, 'entry');
+                  }
+                }}
+              >
+                <div className="flex items-start justify-between mb-1.5">
+                  <span className={`font-semibold text-sm ${selected ? "text-teal" : "text-white-soft"}`}>
+                    {mod.name}
+                  </span>
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    selected ? "bg-teal text-midnight" : "border border-white/20"
+                  }`}>
+                    {selected && <CheckIcon />}
+                  </span>
+                </div>
+                <p className="text-ghost text-xs mb-2">{mod.desc}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono text-teal/70">
+                    {pricingMod
+                      ? `${isTiered && !selected ? 'from ' : ''}${formatPrice(getModulePrice(pricingMod, selected ? currentTier : 'entry', currency), currency)}/mo`
+                      : mod.price}
+                  </span>
+                  <span className="text-xs text-ghost">{mod.agents} AI agents</span>
+                </div>
+              </button>
+
+              {/* Tier selector — only shown for tiered modules when selected */}
+              {selected && isTiered && pricingMod && (
+                <div className="flex gap-1.5 mt-3" onClick={(e) => e.stopPropagation()}>
+                  {TIER_ORDER.filter((t) => pricingMod.usd[t] !== undefined).map((t) => (
+                    <button
+                      key={t}
+                      onClick={() => setTierPref(pricingKey, t)}
+                      className={`flex-1 py-1.5 rounded text-xs font-medium transition-all duration-150 ${
+                        currentTier === t
+                          ? "bg-teal text-midnight"
+                          : "bg-white/5 text-ghost/60 hover:bg-white/10 hover:text-white-soft"
+                      }`}
+                    >
+                      {TIER_LABELS[t]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           );
         })}
       </div>
@@ -1186,7 +1228,7 @@ function StepModules({ formData, updateField, currency }: { formData: FormData; 
       {selectedCount > 0 && (
         <div className="p-3 rounded-lg bg-teal/5 border border-teal/20 text-sm">
           <span className="text-teal font-semibold">{selectedCount} module{selectedCount > 1 ? "s" : ""} selected</span>
-          <span className="text-ghost"> — Our AI will fine-tune tier recommendations based on your profile</span>
+          <span className="text-ghost"> — Our AI will fine-tune recommendations based on your profile</span>
         </div>
       )}
     </div>
@@ -1229,6 +1271,7 @@ function ReportView({
     medium: "bg-teal/20 text-teal border-teal/30",
     low: "bg-ghost/20 text-ghost border-ghost/30",
   };
+
 
   return (
     <div className="min-h-screen bg-midnight">
