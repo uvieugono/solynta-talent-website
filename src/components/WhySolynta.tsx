@@ -30,7 +30,7 @@ const reasons = [
   {
     icon: "💰",
     title: "Fraction of In-House Cost",
-    desc: "Equivalent in-house teams cost $500,000–$1,000,000+/year. Solynta delivers the same capability for a fraction — with no HR overhead.",
+    desc: "Equivalent in-house teams cost $500,000\u2013$1,000,000+/year (\u00A3400K\u2013\u00A3800K). Solynta delivers the same capability for a fraction \u2014 with no HR overhead.",
   },
 ];
 

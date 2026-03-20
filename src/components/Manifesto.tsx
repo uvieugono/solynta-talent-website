@@ -2,38 +2,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import ScrollReveal from "./ScrollReveal";
 
-/* ── Cost comparison data ── */
-const costCards = [
-  {
-    label: "In-House Accountant",
-    cost: "$60–90K",
-    sub: "per year + benefits",
-    scope: "1 person, 1 function",
-    featured: false,
-  },
-  {
-    label: "In-House HR Manager",
-    cost: "$55–80K",
-    sub: "per year + benefits",
-    scope: "1 person, 1 function",
-    featured: false,
-  },
-  {
-    label: "Customer Service Rep",
-    cost: "$35–50K",
-    sub: "per year + benefits",
-    scope: "1 person, 1 function",
-    featured: false,
-  },
-  {
-    label: "Solynta Talent",
-    cost: "From $250",
-    sub: "per month, all-in",
-    scope: "Full department, AI-powered",
-    featured: true,
-  },
-];
-
 /* ── Animated counter that counts up on scroll ── */
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -100,8 +68,27 @@ function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
   return progress;
 }
 
+/* ── "With vs Without" comparison data ── */
+const withoutRows = [
+  { role: "Bookkeeper / Accountant", cost: "$60\u201390K" },
+  { role: "HR Manager", cost: "$55\u201380K" },
+  { role: "Sales / CRM Person", cost: "$50\u201375K" },
+  { role: "Customer Service Rep", cost: "$35\u201350K" },
+  { role: "Marketing Coordinator", cost: "$45\u201370K" },
+  { role: "IT / Data Entry", cost: "$30\u201345K" },
+  { role: "Software Licenses", cost: "$6\u201312K" },
+];
+
+const withRows = [
+  { module: "Finance Core", price: "from $250/mo" },
+  { module: "HR & Admin Ops", price: "$250/mo" },
+  { module: "Sales, CRM & Web", price: "$250/mo" },
+  { module: "AI Customer Service", price: "$250/mo" },
+  { module: "Marketing Dept.", price: "from $500/mo" },
+  { module: "Enterprise Intelligence", price: "from $500/mo" },
+];
+
 export default function Manifesto() {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const obsoleteRef = useRef<HTMLDivElement>(null);
   const progress = useScrollProgress(sectionRef);
@@ -195,71 +182,7 @@ export default function Manifesto() {
           </ScrollReveal>
         </div>
 
-        {/* ─── BEAT 3: AI urgency — asymmetric layout ─── */}
-        <div className="max-w-7xl mx-auto px-6 py-28 lg:py-36">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-6 items-start">
-            {/* Left column — 7 cols, narrative */}
-            <div className="lg:col-span-7">
-              <ScrollReveal>
-                <p className="text-xs uppercase tracking-[0.3em] text-coral mb-8 font-medium">
-                  The AI Imperative
-                </p>
-                <h3 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] mb-8">
-                  The AI revolution
-                  <br />
-                  isn&apos;t coming —{" "}
-                  <span className="text-gradient">it&apos;s here.</span>
-                </h3>
-              </ScrollReveal>
-
-              <ScrollReveal delay={150}>
-                <p className="text-lg sm:text-xl text-ghost leading-relaxed mb-6 max-w-xl">
-                  The businesses that survive won&apos;t be the ones that
-                  bolt AI onto the edges of their operations as an afterthought.
-                </p>
-                <p className="text-lg sm:text-xl text-ghost leading-relaxed max-w-xl">
-                  They&apos;ll be the ones with AI{" "}
-                  <span className="text-teal font-semibold">
-                    embedded directly into every operational workflow
-                  </span>{" "}
-                  — from bookkeeping to customer support, from payroll
-                  to procurement.
-                </p>
-              </ScrollReveal>
-            </div>
-
-            {/* Right column — 5 cols, "Hard Truth" callout (overlaps vertically) */}
-            <div className="lg:col-span-5 lg:mt-24">
-              <ScrollReveal delay={300}>
-                <div className="relative group">
-                  {/* Glowing border effect on hover */}
-                  <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-coral/30 via-coral/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm" />
-                  <div className="relative p-8 lg:p-10 rounded-2xl border border-coral/20 bg-navy/80 backdrop-blur-sm">
-                    <div className="flex items-center gap-2 mb-5">
-                      <div className="w-2 h-2 rounded-full bg-coral animate-pulse" />
-                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-coral">
-                        The Hard Truth
-                      </span>
-                    </div>
-                    <p className="text-lg text-white-soft/90 leading-relaxed">
-                      No SME will survive the AI age without having AI
-                      embedded directly into their operational workflows.
-                    </p>
-                    <div className="mt-5 pt-5 border-t border-white/5">
-                      <p className="text-base text-ghost leading-relaxed">
-                        You can&apos;t afford to ignore AI.
-                        <br />
-                        And you can&apos;t afford to build it in-house.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-
-        {/* ─── BEAT 4: The solution — with animated stats ─── */}
+        {/* ─── BEAT 3: The Solution — with animated stats ─── */}
         <div className="relative py-28 lg:py-36">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-teal/[0.015] to-transparent" />
 
@@ -272,9 +195,9 @@ export default function Manifesto() {
                 The Solution
               </p>
               <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.05] mb-8 max-w-4xl">
-                Solynta Talent solves
+                Your entire back office.
                 <br className="hidden sm:block" />
-                both problems at once.
+                AI-powered. One subscription.
               </h2>
             </ScrollReveal>
 
@@ -345,122 +268,97 @@ export default function Manifesto() {
           </div>
         </div>
 
-        {/* ─── BEAT 5: Cost comparison — horizontal scroll with dramatic reveal ─── */}
+        {/* ─── BEAT 4: With vs Without — comparison table ─── */}
         <div className="py-28 lg:py-36">
-          <div className="max-w-7xl mx-auto px-6 mb-12">
+          <div className="max-w-7xl mx-auto px-6">
             <ScrollReveal>
               <p className="text-xs uppercase tracking-[0.3em] text-teal mb-4 font-medium">
                 The Economics
               </p>
               <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.05] mb-6">
-                A fraction of the cost.
+                Same capability.<br />
+                <span className="text-gradient">A fraction of the cost.</span>
               </h2>
-              <p className="text-xl sm:text-2xl text-ghost/70 font-light max-w-2xl">
-                All of the capability.
+              <p className="text-xl text-ghost/70 font-light max-w-2xl mb-14">
+                See what a typical 20-person company saves by switching from
+                in-house operations to Solynta Talent.
               </p>
             </ScrollReveal>
-          </div>
 
-          {/* Horizontal scroll track */}
-          <ScrollReveal delay={200}>
-            <div
-              ref={scrollRef}
-              className="flex gap-5 overflow-x-auto px-6 pb-6 snap-x snap-mandatory scrollbar-thin"
-              style={{
-                scrollbarWidth: "thin",
-                scrollbarColor: "var(--color-slate-mid) transparent",
-              }}
-            >
-              <div className="hidden xl:block shrink-0 w-[calc((100vw-1280px)/2)]" />
-
-              {costCards.map((card, i) => (
-                <div
-                  key={i}
-                  className={`group shrink-0 w-72 sm:w-80 snap-center rounded-2xl border transition-all duration-500 relative overflow-hidden ${
-                    card.featured
-                      ? "border-teal/40 bg-gradient-to-b from-teal/[0.08] to-teal/[0.02]"
-                      : "border-white/5 bg-slate-dark/50 hover:border-white/10"
-                  }`}
-                >
-                  {/* Strikethrough line for non-featured */}
-                  {!card.featured && (
-                    <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-coral/20 -rotate-12 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-                  )}
-
-                  {/* Featured glow */}
-                  {card.featured && (
-                    <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-teal/10 blur-[60px] rounded-full" />
-                  )}
-
-                  <div className="relative p-8">
-                    {card.featured && (
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal/10 border border-teal/20 mb-4">
-                        <div className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-teal">
-                          Recommended
-                        </span>
+            {/* Side-by-side comparison */}
+            <ScrollReveal delay={200}>
+              <div className="grid lg:grid-cols-2 gap-6 mb-12">
+                {/* WITHOUT column */}
+                <div className="rounded-2xl border border-coral/20 bg-coral/[0.03] p-6 sm:p-8">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-2 h-2 rounded-full bg-coral" />
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-coral">
+                      Without Solynta Talent
+                    </span>
+                  </div>
+                  <div className="space-y-3 mb-6">
+                    {withoutRows.map((row, i) => (
+                      <div key={i} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                        <span className="text-sm text-ghost/80">{row.role}</span>
+                        <span className="text-sm font-mono text-white-soft/70">{row.cost}<span className="text-ghost/40">/yr</span></span>
                       </div>
-                    )}
-
-                    <p className={`text-sm uppercase tracking-wider mb-4 font-medium ${
-                      card.featured ? "text-teal" : "text-ghost"
-                    }`}>
-                      {card.label}
-                    </p>
-
-                    <div className={`font-[var(--font-display)] text-4xl sm:text-5xl font-bold mb-1 ${
-                      card.featured ? "text-teal" : "text-white-soft"
-                    }`}>
-                      {card.cost}
+                    ))}
+                  </div>
+                  <div className="pt-4 border-t border-coral/20">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-coral">Total annual cost</span>
+                      <span className="font-[var(--font-display)] text-2xl font-bold text-coral">$280\u2013500K+</span>
                     </div>
-                    <p className="text-sm text-ghost mb-6">{card.sub}</p>
+                    <p className="text-xs text-ghost/50 mt-2">Plus benefits, recruitment, training, turnover, office space, and management time</p>
+                  </div>
+                </div>
 
-                    <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${
-                      card.featured
-                        ? "bg-teal/10 text-teal border border-teal/20"
-                        : "bg-white/5 text-ghost/70 border border-white/5"
-                    }`}>
-                      {card.scope}
+                {/* WITH column */}
+                <div className="rounded-2xl border border-teal/30 bg-teal/[0.04] p-6 sm:p-8 relative overflow-hidden">
+                  <div className="absolute -top-16 right-0 w-32 h-32 bg-teal/10 blur-[60px] rounded-full" />
+                  <div className="relative">
+                    <div className="flex items-center gap-2 mb-6">
+                      <div className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal">
+                        With Solynta Talent
+                      </span>
+                    </div>
+                    <div className="space-y-3 mb-6">
+                      {withRows.map((row, i) => (
+                        <div key={i} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                          <span className="text-sm text-white-soft">{row.module}</span>
+                          <span className="text-sm font-mono text-teal">{row.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="pt-4 border-t border-teal/30">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-teal">Monthly total</span>
+                        <span className="font-[var(--font-display)] text-2xl font-bold text-teal">from $2,000/mo</span>
+                      </div>
+                      <p className="text-xs text-ghost/50 mt-2">All-in. No recruitment. No benefits. No overhead. Scale up or down with 30 days notice.</p>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            </ScrollReveal>
 
-              <div className="hidden xl:block shrink-0 w-[calc((100vw-1280px)/2)]" />
-            </div>
-          </ScrollReveal>
-
-          {/* Swipe hint for mobile */}
-          <div className="flex justify-center mt-4 lg:hidden">
-            <span className="text-xs text-ghost/40 uppercase tracking-[0.2em] font-[var(--font-mono)]">
-              swipe to compare
-            </span>
-          </div>
-
-          {/* Results row */}
-          <div className="max-w-7xl mx-auto px-6 mt-14">
+            {/* Savings callout */}
             <ScrollReveal delay={300}>
-              <div className="flex flex-wrap gap-8 sm:gap-12">
-                {[
-                  { label: "Lower operating costs", arrow: "\u2193" },
-                  { label: "Wider margins", arrow: "\u2191" },
-                  { label: "More capital for growth", arrow: "\u2192" },
-                ].map((r, i) => (
-                  <div key={i} className="flex items-center gap-3 group">
-                    <span className="w-10 h-10 rounded-full bg-teal/10 border border-teal/20 flex items-center justify-center text-teal font-bold font-[var(--font-mono)] text-lg group-hover:bg-teal/20 transition-colors duration-300">
-                      {r.arrow}
-                    </span>
-                    <span className="text-white-soft font-medium">
-                      {r.label}
-                    </span>
-                  </div>
-                ))}
+              <div className="text-center p-8 rounded-2xl bg-gradient-to-r from-teal/[0.06] via-teal/[0.03] to-lavender/[0.06] border border-teal/10">
+                <p className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white-soft mb-3">
+                  Save up to <span className="text-gradient">$240,000/year</span>
+                </p>
+                <p className="text-lg text-ghost/70 max-w-xl mx-auto">
+                  With better output: real-time dashboards, 24/7 service,
+                  automated reconciliation, and AI-powered intelligence.
+                </p>
               </div>
             </ScrollReveal>
           </div>
         </div>
 
-        {/* ─── BEAT 6: Cloud analogy — editorial, centered, impactful ─── */}
+        {/* ─── BEAT 5: Cloud analogy — editorial, centered, impactful ─── */}
         <div className="relative py-32 lg:py-44">
           {/* Layered background atmosphere */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-lavender/[0.02] to-transparent" />

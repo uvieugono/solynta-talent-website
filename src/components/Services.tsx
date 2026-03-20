@@ -51,10 +51,10 @@ export default function Services() {
                       </div>
                       <div className="text-right">
                         <div className="font-[var(--font-display)] text-lg font-bold text-white-soft">
-                          {s.price}
+                          {s.price.usd}
                         </div>
                         <div className="text-[10px] text-teal font-medium mt-0.5">
-                          SAVES {s.saves}
+                          SAVES {s.saves.usd}
                         </div>
                       </div>
                     </div>

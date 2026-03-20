@@ -1,5 +1,5 @@
 // src/lib/pricing.ts
-export type Currency = 'USD' | 'NGN'
+export type Currency = 'USD' | 'NGN' | 'GBP'
 export type Tier = 'entry' | 'growth' | 'enterprise'
 export type ModuleKey =
   | 'finance'
@@ -30,6 +30,7 @@ export interface ModuleDefinition {
   features: string[]
   usd: Partial<Record<Tier, number>>
   ngn: Partial<Record<Tier, number>>
+  gbp: Partial<Record<Tier, number>>
   /** Per-tier feature breakdowns (only for tiered modules) */
   tierDetails?: Partial<Record<Tier, TierDetail>>
 }
@@ -44,6 +45,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Bookkeeping & reconciliation', 'P&L, balance sheet & cash flow', 'Full payroll computation & payslips', 'Tax filing & compliance'],
     usd: { entry: 250, growth: 375, enterprise: 500 },
     ngn: { entry: 25000, growth: 50000, enterprise: 100000 },
+    gbp: { entry: 200, growth: 300, enterprise: 400 },
     tierDetails: {
       entry: {
         name: 'Finance Essentials',
@@ -96,6 +98,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Website SEO & content updates', 'CRM pipeline management', 'Lead tracking & outreach', 'Monthly performance reports'],
     usd: { entry: 250 },
     ngn: { entry: 45000 },
+    gbp: { entry: 200 },
     tierDetails: {
       entry: {
         name: 'Sales, CRM & Web',
@@ -121,6 +124,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['24/7 AI chat on your website', 'Email triage & auto-responses', 'Escalation to human agents', 'Monthly interaction reports'],
     usd: { entry: 250 },
     ngn: { entry: 25000 },
+    gbp: { entry: 200 },
     tierDetails: {
       entry: {
         name: 'AI Customer Service',
@@ -146,6 +150,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Onboarding & offboarding workflows', 'Leave tracking & HR records', 'Vendor & procurement management', 'IT asset & access management'],
     usd: { entry: 250 },
     ngn: { entry: 25000 },
+    gbp: { entry: 200 },
     tierDetails: {
       entry: {
         name: 'HR & Admin Ops',
@@ -171,6 +176,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Social media management (3+ platforms)', 'Google & Meta ad campaigns', 'Monthly content calendar', 'Analytics & reporting'],
     usd: { entry: 500, growth: 800, enterprise: 1200 },
     ngn: { entry: 25000, growth: 50000, enterprise: 100000 },
+    gbp: { entry: 400, growth: 650, enterprise: 950 },
     tierDetails: {
       entry: {
         name: 'Marketing Essentials',
@@ -224,6 +230,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Dedicated developers inside your team', 'Works in your tools & codebase', 'Attends your standups & sprints', 'Senior code review & oversight'],
     usd: { entry: 500, growth: 1000, enterprise: 1800 },
     ngn: { entry: 150000, growth: 250000, enterprise: 500000 },
+    gbp: { entry: 400, growth: 800, enterprise: 1400 },
     tierDetails: {
       entry: {
         name: 'Dev Essentials',
@@ -281,6 +288,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['KPI dashboards built & maintained', 'Data cleaning & quality assurance', 'Predictive ML models', 'Monthly insight reports'],
     usd: { entry: 250, growth: 600, enterprise: 1200 },
     ngn: { entry: 85000, growth: 125000, enterprise: 250000 },
+    gbp: { entry: 200, growth: 475, enterprise: 950 },
     tierDetails: {
       entry: {
         name: 'Data Essentials',
@@ -339,6 +347,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Competitor benchmarking reports', 'Board-ready strategic analysis', 'AI governance & audit trails', 'Knowledge base management'],
     usd: { entry: 500, growth: 1000, enterprise: 2000 },
     ngn: { entry: 25000, growth: 50000, enterprise: 100000 },
+    gbp: { entry: 400, growth: 800, enterprise: 1600 },
     tierDetails: {
       entry: {
         name: 'Intelligence Essentials',
@@ -391,6 +400,7 @@ export const MODULES: ModuleDefinition[] = [
     features: ['Real-time stock tracking', 'AI demand forecasting', 'Purchase order automation', 'Shopify / WooCommerce integration'],
     usd: { entry: 250, growth: 600, enterprise: 1200 },
     ngn: { entry: 50000, growth: 75000, enterprise: 100000 },
+    gbp: { entry: 200, growth: 475, enterprise: 950 },
     tierDetails: {
       entry: {
         name: 'Inventory Essentials',
@@ -442,11 +452,13 @@ export const MODULES: ModuleDefinition[] = [
  */
 export function formatPrice(amount: number, currency: Currency): string {
   const formatted = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(amount)
-  return currency === 'NGN' ? `₦${formatted}` : `$${formatted}`
+  if (currency === 'NGN') return `\u20A6${formatted}`
+  if (currency === 'GBP') return `\u00A3${formatted}`
+  return `$${formatted}`
 }
 
 /** Return the price for a given module + tier + currency, defaulting to entry. */
 export function getModulePrice(mod: ModuleDefinition, tier: Tier, currency: Currency): number {
-  const prices = currency === 'NGN' ? mod.ngn : mod.usd
+  const prices = currency === 'NGN' ? mod.ngn : currency === 'GBP' ? mod.gbp : mod.usd
   return prices[tier] ?? prices.entry ?? 0
 }

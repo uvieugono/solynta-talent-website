@@ -5,8 +5,8 @@ import Challenge from "@/components/Challenge";
 import UseCases from "@/components/UseCases";
 import Services from "@/components/Services";
 import Platform from "@/components/Platform";
-import Agents from "@/components/Agents";
 import DeliveryModel from "@/components/DeliveryModel";
+import StartupSection from "@/components/StartupSection";
 import Pricing from "@/components/Pricing";
 import HowItWorks from "@/components/HowItWorks";
 import WhySolynta from "@/components/WhySolynta";
@@ -24,8 +24,8 @@ export default function Home() {
       <UseCases />
       <Services />
       <Platform />
-      <Agents />
       <DeliveryModel />
+      <StartupSection />
       <Pricing />
       <HowItWorks />
       <WhySolynta />

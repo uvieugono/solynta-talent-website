@@ -72,7 +72,7 @@ interface AnalysisReport {
     phase_3: { title: string; modules: string[]; tasks: string[]; deliverables: string[] };
   };
   financial_analysis: {
-    currency?: 'USD' | 'NGN';
+    currency?: 'USD' | 'NGN' | 'GBP';
     monthly_investment: number;
     annual_investment: number;
     estimated_current_cost: number;
@@ -214,6 +214,15 @@ const NGN_BUDGET_RANGES = [
   { value: "ngn-400k-800k",  label: "₦400,000 – ₦800,000/mo" },
   { value: "ngn-800k-2m",    label: "₦800,000 – ₦2,000,000/mo" },
   { value: "ngn-2m-plus",    label: "₦2,000,000+/mo" },
+  { value: "flexible",       label: "Flexible / ROI-driven" },
+];
+
+const GBP_BUDGET_RANGES = [
+  { value: "gbp-under-400",  label: "Under £400/mo" },
+  { value: "gbp-400-800",    label: "£400 – £800/mo" },
+  { value: "gbp-800-1500",   label: "£800 – £1,500/mo" },
+  { value: "gbp-1500-4000",  label: "£1,500 – £4,000/mo" },
+  { value: "gbp-4000-plus",  label: "£4,000+/mo" },
   { value: "flexible",       label: "Flexible / ROI-driven" },
 ];
 
@@ -392,10 +401,14 @@ export default function ConsultationWizard() {
 
   function handleCurrencyChange(c: Currency) {
     setCurrency(c);
-    const isNgnCode = formData.budget_range.startsWith("ngn-");
-    const isUsdCode = !isNgnCode && formData.budget_range !== "" && formData.budget_range !== "flexible";
-    if ((c === "NGN" && isUsdCode) || (c === "USD" && isNgnCode)) {
-      updateField("budget_range", "");
+    const currentBudget = formData.budget_range;
+    if (currentBudget && currentBudget !== "flexible") {
+      const isNgn = currentBudget.startsWith("ngn-");
+      const isGbp = currentBudget.startsWith("gbp-");
+      const isUsd = !isNgn && !isGbp;
+      if ((c === "NGN" && !isNgn) || (c === "GBP" && !isGbp) || (c === "USD" && !isUsd)) {
+        updateField("budget_range", "");
+      }
     }
   }
 
@@ -742,7 +755,7 @@ export default function ConsultationWizard() {
 
           {/* Currency toggle */}
           <div className="flex justify-center gap-2 mb-6">
-            {(["USD", "NGN"] as Currency[]).map((c) => (
+            {(["USD", "GBP", "NGN"] as Currency[]).map((c) => (
               <button
                 key={c}
                 onClick={() => handleCurrencyChange(c)}
@@ -752,7 +765,7 @@ export default function ConsultationWizard() {
                     : "bg-white/5 text-ghost border border-white/10 hover:border-teal/30"
                 }`}
               >
-                <span>{c === "USD" ? "🇺🇸" : "🇳🇬"}</span>
+                <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : c === "GBP" ? "\u{1F1EC}\u{1F1E7}" : "\u{1F1F3}\u{1F1EC}"}</span>
                 <span>{c}</span>
               </button>
             ))}
@@ -1120,7 +1133,7 @@ function StepChallenges({
       {/* Timeline & Budget */}
       <div className="grid sm:grid-cols-2 gap-4">
         <SelectField label="When do you want to start?" value={formData.timeline} onChange={(v) => updateField("timeline", v)} options={TIMELINES} placeholder="Select timeline" />
-        <SelectField label="Monthly budget range" value={formData.budget_range} onChange={(v) => updateField("budget_range", v)} options={currency === "NGN" ? NGN_BUDGET_RANGES : BUDGET_RANGES} placeholder="Select range" />
+        <SelectField label="Monthly budget range" value={formData.budget_range} onChange={(v) => updateField("budget_range", v)} options={currency === "NGN" ? NGN_BUDGET_RANGES : currency === "GBP" ? GBP_BUDGET_RANGES : BUDGET_RANGES} placeholder="Select range" />
       </div>
     </div>
   );

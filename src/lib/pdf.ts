@@ -12,7 +12,7 @@ export interface PDFReportInput {
   company_name: string;
   contact_name: string;
   completed_at?: string | null;
-  currency?: "NGN" | "USD";
+  currency?: "NGN" | "USD" | "GBP";
   analysis: {
     executive_summary: string;
     company_assessment: {
@@ -81,7 +81,7 @@ export async function generateReportPDF(data: PDFReportInput) {
 
   // Currency: default to NGN, respect data.currency or analysis.financial_analysis.currency
   const currencyCode = data.currency || report.financial_analysis?.currency || "NGN";
-  const sym = currencyCode === "NGN" ? "N" : "$";
+  const sym = currencyCode === "NGN" ? "N" : currencyCode === "GBP" ? "\u00A3" : "$";
 
   // Format currency value with symbol (jsPDF Helvetica can't render ₦, so use "N" prefix for Naira)
   function formatCurrency(amount: number): string {

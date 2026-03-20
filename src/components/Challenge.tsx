@@ -5,7 +5,7 @@ const challenges = [
   {
     icon: "💸",
     title: "Talent is Prohibitively Expensive",
-    desc: "Building a complete operations team — finance, HR, sales, marketing, tech, data — costs $500,000+ a year in salaries alone.",
+    desc: "Building a complete operations team \u2014 finance, HR, sales, marketing, tech, data \u2014 costs $500,000+ (\u00A3400,000+) a year in salaries alone.",
     color: "text-coral",
   },
   {

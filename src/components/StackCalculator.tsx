@@ -71,7 +71,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
         <span className="text-xs uppercase tracking-[0.2em] text-ghost/60 mr-2">
           View pricing in
         </span>
-        {(["USD", "NGN"] as Currency[]).map((c) => (
+        {(["USD", "GBP", "NGN"] as Currency[]).map((c) => (
           <button
             key={c}
             onClick={() => setCurrency(c)}
@@ -81,7 +81,7 @@ export default function StackCalculator({ fullPage = false }: { fullPage?: boole
                 : "bg-slate-dark/50 text-ghost border border-white/10 hover:border-teal/30"
             }`}
           >
-            <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : "\u{1F1F3}\u{1F1EC}"}</span>
+            <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : c === "GBP" ? "\u{1F1EC}\u{1F1E7}" : "\u{1F1F3}\u{1F1EC}"}</span>
             <span>{c}</span>
           </button>
         ))}

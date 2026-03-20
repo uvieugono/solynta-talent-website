@@ -22,7 +22,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What exactly is Solynta Talent?",
-        a: "Solynta Talent is a full-service, AI-augmented back-office operations provider. We deploy 41 purpose-built AI agents across 9 business functions \u2014 finance, sales, marketing, HR, customer service, development, data science, enterprise intelligence and inventory \u2014 supervised by experienced human professionals. Think of it as your entire operations team, delivered as a subscription starting from $250/month instead of hiring $500K+/year in staff.",
+        a: "Solynta Talent is a full-service, AI-augmented back-office operations provider. We deploy 41 purpose-built AI agents across 9 business functions \u2014 finance, sales, marketing, HR, customer service, development, data science, enterprise intelligence and inventory \u2014 supervised by experienced human professionals. Think of it as your entire operations team, delivered as a subscription starting from $250/month (\u00A3200/month) instead of hiring $500K+/year in staff.",
       },
       {
         q: "How is this different from traditional outsourcing or freelancers?",
@@ -30,7 +30,7 @@ const categories: FAQCategory[] = [
       },
       {
         q: "What does the pricing actually include \u2014 are there hidden fees?",
-        a: "No hidden fees. Every subscription includes your AI agents, human specialists, the SolyntaFlow platform, all tools and integrations, onboarding, and ongoing support. You start from $250/month for a single module. Pre-built packages start at $500/month (Startup), $1,000/month (Growth) or $3,000/month (Enterprise). You can also build a custom stack using our calculator. Scale up or down with 30 days notice \u2014 no penalties, no lock-in contracts.",
+        a: "No hidden fees. Every subscription includes your AI agents, human specialists, the SolyntaFlow platform, all tools and integrations, onboarding, and ongoing support. You start from $250/month (\u00A3200/month) for a single module. Pre-built packages start at $500/month (Startup), $1,000/month (Growth) or $3,000/month (Enterprise). GBP pricing: \u00A3400/month (Startup), \u00A3800/month (Growth) or \u00A32,350/month (Enterprise). You can also build a custom stack using our calculator. Scale up or down with 30 days notice \u2014 no penalties, no lock-in contracts.",
       },
       {
         q: "How quickly can we get started?",
@@ -49,7 +49,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What finance roles does this module replace?",
-        a: "Finance Core replaces up to four full-time hires: a Bookkeeper, Accountant, Payroll Officer and Tax Accountant. Our four AI agents \u2014 The Ledger Keeper, The Controller, The Payroll Officer and The Tax Guardian \u2014 handle transaction posting, bank reconciliation, financial reporting, payroll computation and tax compliance. Processing cadence scales with your tier: Essentials (weekly batch via The Friday Sync), Growth (daily processing with WhatsApp receipt snapping) and Pro (continuous near-real-time with a Dedicated Senior Finance Specialist). You get a complete finance department from $250/month instead of $15,000+/month in salaries alone.",
+        a: "Finance Core replaces up to four full-time hires: a Bookkeeper, Accountant, Payroll Officer and Tax Accountant. Our four AI agents \u2014 The Ledger Keeper, The Controller, The Payroll Officer and The Tax Guardian \u2014 handle transaction posting, bank reconciliation, financial reporting, payroll computation and tax compliance. Processing cadence scales with your tier: Essentials (weekly batch via The Friday Sync), Growth (daily processing with WhatsApp receipt snapping) and Pro (continuous near-real-time with a Dedicated Senior Finance Specialist). You get a complete finance department from $250/month (\u00A3200/month) instead of $15,000+/month in salaries alone.",
       },
       {
         q: "How does AI handle my bookkeeping?",
@@ -103,7 +103,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What customer service roles does this replace?",
-        a: "This module replaces 1\u20133 full-time customer service representatives, saving $3,000+/month. Three AI agents \u2014 the WhatsApp Business Bot, Email Inbox AI and Website Chatbot \u2014 handle customer inquiries across WhatsApp, email and web chat around the clock. No per-message fees. They are trained on YOUR business data, not generic responses. Human agents handle complex escalations and sensitive situations.",
+        a: "This module replaces 1\u20133 full-time customer service representatives, saving $3,000+/month (\u00A32,400+). Three AI agents \u2014 the WhatsApp Business Bot, Email Inbox AI and Website Chatbot \u2014 handle customer inquiries across WhatsApp, email and web chat around the clock. No per-message fees. They are trained on YOUR business data, not generic responses. Human agents handle complex escalations and sensitive situations.",
       },
       {
         q: "How does the AI handle customer conversations?",
@@ -157,7 +157,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What marketing roles does this replace?",
-        a: "The Marketing module replaces up to seven specialised roles: Social Media Manager, PPC Specialist, Content Writer, SEO Specialist, Video Producer, Marketing Automation Specialist and Analytics Manager. That is $15,000+/month in salaries replaced by a subscription starting from $500/month. Seven AI agents work under a unified strategy with human creative direction.",
+        a: "The Marketing module replaces up to seven specialised roles: Social Media Manager, PPC Specialist, Content Writer, SEO Specialist, Video Producer, Marketing Automation Specialist and Analytics Manager. That is $15,000+/month (\u00A312,000+) in salaries replaced by a subscription starting from $500/month (\u00A3400/month). Seven AI agents work under a unified strategy with human creative direction.",
       },
       {
         q: "How does AI create content that sounds like our brand?",
@@ -227,7 +227,7 @@ const categories: FAQCategory[] = [
       },
       {
         q: "Do we need existing data infrastructure to start?",
-        a: "No. At the Essentials tier ($250/month), we work with whatever data you have \u2014 spreadsheets, CSVs, your existing software exports. We clean it, structure it and build dashboards on top. For advanced analytics, we set up a lightweight data warehouse (BigQuery, Snowflake or PostgreSQL) as part of onboarding at no extra cost. You do not need to be \u201Cdata-ready\u201D to start \u2014 getting you data-ready is part of the service.",
+        a: "No. At the Essentials tier ($250/month / \u00A3200/month), we work with whatever data you have \u2014 spreadsheets, CSVs, your existing software exports. We clean it, structure it and build dashboards on top. For advanced analytics, we set up a lightweight data warehouse (BigQuery, Snowflake or PostgreSQL) as part of onboarding at no extra cost. You do not need to be \u201Cdata-ready\u201D to start \u2014 getting you data-ready is part of the service.",
       },
     ],
   },

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ServiceData } from "@/lib/services";
+import { ServiceData, pickCurrency } from "@/lib/services";
 import { illustrationMap } from "@/components/ServiceIllustrations";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
@@ -22,6 +22,7 @@ const SLUG_TO_KEY: Record<string, string> = {
 };
 
 export default function ServicePageClient({ service }: { service: ServiceData }) {
+  const [currency, setCurrency] = useState<Currency>("USD");
   const Illustration = illustrationMap[service.slug];
   const currentIndex = services.findIndex((s) => s.slug === service.slug);
   const prevService = currentIndex > 0 ? services[currentIndex - 1] : null;
@@ -83,12 +84,27 @@ export default function ServicePageClient({ service }: { service: ServiceData })
                 <p className="text-xl text-ghost leading-relaxed mb-8 max-w-xl">
                   {service.heroDesc}
                 </p>
-                <div className="flex flex-wrap items-center gap-4 mb-8">
+                <div className="flex flex-wrap items-center gap-4 mb-4">
                   <div className="flex items-baseline gap-1">
-                    <span className="font-[var(--font-display)] text-4xl font-bold text-white-soft">{service.price}</span>
+                    <span className="font-[var(--font-display)] text-4xl font-bold text-white-soft">{pickCurrency(service.price, currency)}</span>
                   </div>
                   <span className="text-sm text-ghost/60">|</span>
-                  <span className="text-sm text-gradient-gold font-semibold">{service.priceNote}</span>
+                  <span className="text-sm text-gradient-gold font-semibold">{pickCurrency(service.priceNote, currency)}</span>
+                </div>
+                <div className="flex items-center gap-1.5 mb-8">
+                  {(["USD", "GBP", "NGN"] as Currency[]).map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => setCurrency(c)}
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                        currency === c
+                          ? "bg-teal/20 text-teal border border-teal/30"
+                          : "text-ghost/50 border border-white/5 hover:border-white/15"
+                      }`}
+                    >
+                      {c === "USD" ? "$ USD" : c === "GBP" ? "£ GBP" : "₦ NGN"}
+                    </button>
+                  ))}
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <a
@@ -118,7 +134,7 @@ export default function ServicePageClient({ service }: { service: ServiceData })
                 </div>
                 <div className="absolute -top-4 -right-4 px-4 py-3 rounded-xl bg-midnight/90 border border-white/10 backdrop-blur-sm">
                   <div className="text-xs text-ghost/60 mb-0.5">Saves</div>
-                  <div className={`font-[var(--font-display)] text-xl font-bold text-gradient-gold`}>{service.saves}</div>
+                  <div className={`font-[var(--font-display)] text-xl font-bold text-gradient-gold`}>{pickCurrency(service.saves, currency)}</div>
                 </div>
               </div>
             </ScrollReveal>
@@ -163,7 +179,7 @@ export default function ServicePageClient({ service }: { service: ServiceData })
         const mod = MODULES.find((m) => m.key === SLUG_TO_KEY[service.slug]);
         if (!mod?.tierDetails) return null;
         const tiers: Tier[] = (["entry", "growth", "enterprise"] as Tier[]).filter((t) => mod.tierDetails![t]);
-        return <TierPricingSection mod={mod} tiers={tiers} service={service} />;
+        return <TierPricingSection mod={mod} tiers={tiers} service={service} currency={currency} onCurrencyChange={setCurrency} />;
       })()}
 
       {/* ====== AI AGENTS ====== */}
@@ -427,12 +443,15 @@ function TierPricingSection({
   mod,
   tiers,
   service,
+  currency,
+  onCurrencyChange,
 }: {
   mod: ModuleDefinition;
   tiers: Tier[];
   service: ServiceData;
+  currency: Currency;
+  onCurrencyChange: (c: Currency) => void;
 }) {
-  const [currency, setCurrency] = useState<Currency>("USD");
 
   return (
     <section id="pricing" className="relative py-24">
@@ -453,17 +472,17 @@ function TierPricingSection({
 
           {/* Currency toggle */}
           <div className="flex items-center justify-center gap-2 mb-12">
-            {(["USD", "NGN"] as Currency[]).map((c) => (
+            {(["USD", "GBP", "NGN"] as Currency[]).map((c) => (
               <button
                 key={c}
-                onClick={() => setCurrency(c)}
+                onClick={() => onCurrencyChange(c)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   currency === c
                     ? "bg-teal text-midnight"
                     : "bg-slate-dark/50 text-ghost border border-white/10 hover:border-teal/30"
                 }`}
               >
-                <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : "\u{1F1F3}\u{1F1EC}"}</span>
+                <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : c === "GBP" ? "\u{1F1EC}\u{1F1E7}" : "\u{1F1F3}\u{1F1EC}"}</span>
                 <span>{c}</span>
               </button>
             ))}

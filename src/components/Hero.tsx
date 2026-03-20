@@ -2,9 +2,9 @@
 
 const stats = [
   { value: "41", label: "AI Agents", suffix: "" },
-  { value: "9", label: "Service Modules", suffix: "" },
-  { value: "$250", label: "Starting From", suffix: "/mo" },
-  { value: "70-85", label: "AI Automation", suffix: "%" },
+  { value: "9", label: "Departments", suffix: "" },
+  { value: "90", label: "Cost Reduction", suffix: "%" },
+  { value: "24/7", label: "Always On", suffix: "" },
 ];
 
 export default function Hero() {
@@ -32,20 +32,21 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Pain-led headline */}
           <h1 className="animate-fade-up delay-100 font-[var(--font-display)] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight mb-6">
-            Your Entire Back Office.
+            Stop paying{" "}
+            <span className="text-coral/90">$20,000/month</span>
             <br />
-            <span className="text-gradient">AI-Powered.</span>
-            <br />
-            <span className="text-white-soft/80">One Subscription.</span>
+            for a back office that{" "}
+            <br className="hidden sm:block" />
+            <span className="text-gradient">AI runs better.</span>
           </h1>
 
           {/* Subheadline */}
           <p className="animate-fade-up delay-200 text-lg sm:text-xl lg:text-2xl text-ghost max-w-2xl mb-10 leading-relaxed">
-            Outsourcing rebuilt for the AI age. We run your entire
-            back office end-to-end — so you can focus exclusively on
-            what generates revenue.
+            41 AI agents across 9 departments — finance, HR, marketing, sales,
+            customer service, data science and more — working 24/7 on your live
+            business data. From <span className="text-teal font-semibold">$250/month</span> per department.
           </p>
 
           {/* CTAs */}
@@ -54,14 +55,14 @@ export default function Hero() {
               href="/consultation"
               className="group relative px-8 py-4 rounded-full bg-teal text-midnight font-semibold text-base hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400"
             >
-              <span className="relative z-10">Free AI Business Analysis</span>
+              <span className="relative z-10">Get Your Free AI Business Analysis</span>
               <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
             <a
-              href="#services"
+              href="#pricing"
               className="px-8 py-4 rounded-full border border-white/10 text-white-soft font-medium text-base hover:border-teal/40 hover:bg-white/5 transition-all duration-400"
             >
-              Explore Services
+              See Pricing
             </a>
           </div>
 

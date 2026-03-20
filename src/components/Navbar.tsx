@@ -7,9 +7,8 @@ const links = [
   { href: "/#use-cases", label: "Use Cases" },
   { href: "/#services", label: "Services" },
   { href: "/#platform", label: "Platform" },
-  { href: "/#agents", label: "AI Agents" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/calculator", label: "Build Your Own Package" },
+  { href: "/calculator", label: "Build Your Stack" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/#faq", label: "FAQ" },
 ];

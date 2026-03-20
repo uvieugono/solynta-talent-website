@@ -1,61 +1,97 @@
 "use client";
+import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import StackCalculator from "./StackCalculator";
+import { Currency, formatPrice } from "@/lib/pricing";
 
-const packages = [
+interface PackageService {
+  name: string;
+  usd: string;
+  gbp: string;
+  ngn: string;
+}
+
+interface Package {
+  name: string;
+  usd: string;
+  gbp: string;
+  ngn: string;
+  desc: string;
+  services: PackageService[];
+  saves: string;
+  featured: boolean;
+}
+
+const packages: Package[] = [
   {
     name: "Startup Essentials",
-    price: "$500",
+    usd: "$500",
+    gbp: "\u00A3400",
+    ngn: "\u20A650,000",
     desc: "Get the fundamentals right",
     services: [
-      { name: "Finance Core", price: "fr $250/mo" },
-      { name: "AI Customer Service", price: "$250/mo" },
+      { name: "Finance Core", usd: "fr $250/mo", gbp: "fr \u00A3200/mo", ngn: "fr \u20A625,000/mo" },
+      { name: "AI Customer Service", usd: "$250/mo", gbp: "\u00A3200/mo", ngn: "\u20A625,000/mo" },
     ],
     saves: "$17,000+/mo",
     featured: false,
   },
   {
     name: "Growth Operations",
-    price: "$1,000",
+    usd: "$1,000",
+    gbp: "\u00A3800",
+    ngn: "\u20A6120,000",
     desc: "Scaled ops for growing teams",
     services: [
-      { name: "Finance Core", price: "fr $250/mo" },
-      { name: "Sales, CRM & Web", price: "$250/mo" },
-      { name: "AI Customer Service", price: "$250/mo" },
-      { name: "HR & Admin Ops", price: "$250/mo" },
+      { name: "Finance Core", usd: "fr $250/mo", gbp: "fr \u00A3200/mo", ngn: "fr \u20A625,000/mo" },
+      { name: "Sales, CRM & Web", usd: "$250/mo", gbp: "\u00A3200/mo", ngn: "\u20A645,000/mo" },
+      { name: "AI Customer Service", usd: "$250/mo", gbp: "\u00A3200/mo", ngn: "\u20A625,000/mo" },
+      { name: "HR & Admin Ops", usd: "$250/mo", gbp: "\u00A3200/mo", ngn: "\u20A625,000/mo" },
     ],
     saves: "$45,000+/mo",
     featured: true,
   },
   {
     name: "Full Enterprise",
-    price: "$3,000",
+    usd: "$3,000",
+    gbp: "\u00A32,350",
+    ngn: "\u20A6455,000",
     desc: "Your complete business OS",
     services: [
-      { name: "Finance Core", price: "fr $250/mo" },
-      { name: "Sales, CRM & Web", price: "$250/mo" },
-      { name: "AI Customer Service", price: "$250/mo" },
-      { name: "HR & Admin Ops", price: "$250/mo" },
-      { name: "Marketing", price: "fr $500/mo" },
-      { name: "Embedded Dev", price: "fr $500/mo" },
-      { name: "Data Science", price: "fr $250/mo" },
-      { name: "Enterprise Intel.", price: "fr $500/mo" },
-      { name: "Inventory", price: "fr $250/mo" },
+      { name: "Finance Core", usd: "fr $250/mo", gbp: "fr \u00A3200/mo", ngn: "fr \u20A625,000/mo" },
+      { name: "Sales, CRM & Web", usd: "$250/mo", gbp: "\u00A3200/mo", ngn: "\u20A645,000/mo" },
+      { name: "AI Customer Service", usd: "$250/mo", gbp: "\u00A3200/mo", ngn: "\u20A625,000/mo" },
+      { name: "HR & Admin Ops", usd: "$250/mo", gbp: "\u00A3200/mo", ngn: "\u20A625,000/mo" },
+      { name: "Marketing", usd: "fr $500/mo", gbp: "fr \u00A3400/mo", ngn: "fr \u20A625,000/mo" },
+      { name: "Embedded Dev", usd: "fr $500/mo", gbp: "fr \u00A3400/mo", ngn: "fr \u20A6150,000/mo" },
+      { name: "Data Science", usd: "fr $250/mo", gbp: "fr \u00A3200/mo", ngn: "fr \u20A685,000/mo" },
+      { name: "Enterprise Intel.", usd: "fr $500/mo", gbp: "fr \u00A3400/mo", ngn: "fr \u20A625,000/mo" },
+      { name: "Inventory", usd: "fr $250/mo", gbp: "fr \u00A3200/mo", ngn: "fr \u20A650,000/mo" },
     ],
     saves: "$100,000+/mo",
     featured: false,
   },
 ];
 
+function getPrice(pkg: Package, currency: Currency): string {
+  return currency === "GBP" ? pkg.gbp : currency === "NGN" ? pkg.ngn : pkg.usd;
+}
+
+function getServicePrice(svc: PackageService, currency: Currency): string {
+  return currency === "GBP" ? svc.gbp : currency === "NGN" ? svc.ngn : svc.usd;
+}
+
 
 export default function Pricing() {
+  const [currency, setCurrency] = useState<Currency>("USD");
+
   return (
     <section id="pricing" className="relative py-28">
       <div className="absolute inset-0 bg-gradient-to-b from-navy via-midnight to-navy" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <ScrollReveal>
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.3em] text-teal mb-4 font-medium">
               Pricing
             </p>
@@ -66,6 +102,29 @@ export default function Pricing() {
               No hidden fees. No setup charges. No long-term lock-in.
               Your monthly total is simply the sum of your active services.
             </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Currency toggle */}
+        <ScrollReveal delay={50}>
+          <div className="flex items-center justify-center gap-2 mb-10">
+            <span className="text-xs uppercase tracking-[0.2em] text-ghost/60 mr-2">
+              View pricing in
+            </span>
+            {(["USD", "GBP", "NGN"] as Currency[]).map((c) => (
+              <button
+                key={c}
+                onClick={() => setCurrency(c)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  currency === c
+                    ? "bg-teal text-midnight"
+                    : "bg-slate-dark/50 text-ghost border border-white/10 hover:border-teal/30"
+                }`}
+              >
+                <span>{c === "USD" ? "\u{1F1FA}\u{1F1F8}" : c === "GBP" ? "\u{1F1EC}\u{1F1E7}" : "\u{1F1F3}\u{1F1EC}"}</span>
+                <span>{c}</span>
+              </button>
+            ))}
           </div>
         </ScrollReveal>
 
@@ -90,7 +149,7 @@ export default function Pricing() {
 
                 <div className="mb-6">
                   <span className="font-[var(--font-display)] text-4xl font-bold text-white-soft">
-                    {pkg.price}
+                    {getPrice(pkg, currency)}
                   </span>
                   <span className="text-ghost text-sm">/mo</span>
                 </div>
@@ -99,7 +158,7 @@ export default function Pricing() {
                   {pkg.services.map((s, j) => (
                     <li key={j} className="flex items-center justify-between text-sm">
                       <span className="text-ghost/80">{s.name}</span>
-                      <span className="text-white-soft font-mono text-xs">{s.price}</span>
+                      <span className="text-white-soft font-mono text-xs">{getServicePrice(s, currency)}</span>
                     </li>
                   ))}
                 </ul>
@@ -135,7 +194,7 @@ export default function Pricing() {
               Build Your Own Package
             </h3>
             <p className="text-ghost text-sm max-w-xl mx-auto">
-              Select the services you need. Prices update instantly — toggle between USD and NGN.
+              Select the services you need. Prices update instantly — toggle between USD, GBP, and NGN.
             </p>
           </div>
         </ScrollReveal>
@@ -147,7 +206,7 @@ export default function Pricing() {
               href="/calculator"
               className="text-sm text-teal hover:text-teal/80 transition-colors"
             >
-              Open full calculator →
+              Open full calculator &rarr;
             </a>
           </div>
         </ScrollReveal>

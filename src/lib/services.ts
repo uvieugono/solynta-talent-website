@@ -12,27 +12,38 @@ export interface ServiceProcess {
   desc: string;
 }
 
+export interface CurrencyStrings {
+  usd: string;
+  gbp: string;
+  ngn: string;
+}
+
 export interface ServiceData {
   slug: string;
   num: string;
   icon: string;
   name: string;
   tagline: string;
-  price: string;
-  priceNote: string;
+  price: CurrencyStrings;
+  priceNote: CurrencyStrings;
   roles: string;
   heroDesc: string;
   color: string;
   accentVar: string;
   accent: string;
   border: string;
-  saves: string;
+  saves: CurrencyStrings;
   features: string[];
   detailedFeatures: { title: string; desc: string }[];
   agents: ServiceAgent[];
   process: ServiceProcess[];
   deliverables: string[];
   faq: { q: string; a: string }[];
+}
+
+/** Pick the right currency string from a CurrencyStrings object */
+export function pickCurrency(cs: CurrencyStrings, currency: "USD" | "GBP" | "NGN"): string {
+  return currency === "GBP" ? cs.gbp : currency === "NGN" ? cs.ngn : cs.usd;
 }
 
 export const services: ServiceData[] = [
@@ -42,15 +53,15 @@ export const services: ServiceData[] = [
     icon: "💰",
     name: "Finance Core",
     tagline: "Your complete AI-powered finance department — from $250/month",
-    price: "from $250/mo",
-    priceNote: "Replaces $15,000+/mo in-house cost",
+    price: { usd: "from $250/mo", gbp: "from £200/mo", ngn: "from ₦25,000/mo" },
+    priceNote: { usd: "Replaces $15,000+/mo in-house cost", gbp: "Replaces £12,000+/mo in-house cost", ngn: "Replaces ₦2M+/mo in-house cost" },
     roles: "Bookkeeper · Accountant · Payroll Officer · Tax Accountant",
     heroDesc: "From weekly batch bookkeeping to board-ready financials — our AI-augmented finance team handles your entire accounting function. 3 tiers: Essentials (weekly batch), Growth (daily processing), Pro (continuous). Every transaction classified, reconciled, and reported with confidence scoring and human oversight.",
     color: "from-teal/20 to-teal/5",
     accentVar: "--color-teal",
     accent: "text-teal",
     border: "border-teal/20",
-    saves: "$14,750+/mo",
+    saves: { usd: "$14,750+/mo", gbp: "£11,800+/mo", ngn: "₦1.8M+/mo" },
     features: [
       "Transaction posting & reconciliation (weekly/daily/continuous)",
       "P&L, balance sheet & cash flow reports",
@@ -124,15 +135,15 @@ export const services: ServiceData[] = [
     icon: "📈",
     name: "Sales, CRM & Web",
     tagline: "From lead generation to deal close — your digital growth engine",
-    price: "$250/mo",
-    priceNote: "Replaces $14,200+/mo in-house cost",
+    price: { usd: "$250/mo", gbp: "£200/mo", ngn: "₦45,000/mo" },
+    priceNote: { usd: "Replaces $14,200+/mo in-house cost", gbp: "Replaces £11,400+/mo in-house cost", ngn: "Replaces ₦1.7M+/mo in-house cost" },
     roles: "Sales Ops · CRM · Web Dev · SEO",
     heroDesc: "A complete digital sales infrastructure — professional website, SEO visibility, CRM pipeline management and automated follow-up sequences. AI handles the research and drafting while your dedicated team manages relationships.",
     color: "from-lavender/20 to-lavender/5",
     accentVar: "--color-lavender",
     accent: "text-lavender",
     border: "border-lavender/20",
-    saves: "$14,200+/mo",
+    saves: { usd: "$14,200+/mo", gbp: "£11,400+/mo", ngn: "₦1.7M+/mo" },
     features: [
       "Professional website build or redesign",
       "SEO setup & Google My Business",
@@ -206,15 +217,15 @@ export const services: ServiceData[] = [
     icon: "💬",
     name: "AI Customer Service",
     tagline: "24/7 intelligent support across every channel",
-    price: "$250/mo",
-    priceNote: "Replaces $3,000+/mo in-house cost",
+    price: { usd: "$250/mo", gbp: "£200/mo", ngn: "₦25,000/mo" },
+    priceNote: { usd: "Replaces $3,000+/mo in-house cost", gbp: "Replaces £2,400+/mo in-house cost", ngn: "Replaces ₦450K+/mo in-house cost" },
     roles: "WhatsApp · Email · Website Chatbot",
     heroDesc: "AI-powered customer support that never sleeps. Trained on YOUR business data, operating across WhatsApp, email and web chat with intelligent escalation to human agents when needed.",
     color: "from-coral/20 to-coral/5",
     accentVar: "--color-coral",
     accent: "text-coral",
     border: "border-coral/20",
-    saves: "$3,000+/mo",
+    saves: { usd: "$3,000+/mo", gbp: "£2,400+/mo", ngn: "₦450K+/mo" },
     features: [
       "WhatsApp Business AI chatbot (24/7)",
       "Email auto-triage & priority sorting",
@@ -281,15 +292,15 @@ export const services: ServiceData[] = [
     icon: "👥",
     name: "HR & Admin Ops",
     tagline: "People operations, procurement and IT — fully managed",
-    price: "$250/mo",
-    priceNote: "Replaces $10,000+/mo in-house cost",
+    price: { usd: "$250/mo", gbp: "£200/mo", ngn: "₦25,000/mo" },
+    priceNote: { usd: "Replaces $10,000+/mo in-house cost", gbp: "Replaces £8,000+/mo in-house cost", ngn: "Replaces ₦1.2M+/mo in-house cost" },
     roles: "HR Admin · Office Mgr · Procurement · IT Admin",
     heroDesc: "Complete back-office operations — from employee onboarding to vendor management to IT administration. Four AI agents handle the workflows while your dedicated team manages the people and relationships.",
     color: "from-gold/20 to-gold/5",
     accentVar: "--color-gold",
     accent: "text-gold",
     border: "border-gold/20",
-    saves: "$10,000+/mo",
+    saves: { usd: "$10,000+/mo", gbp: "£8,000+/mo", ngn: "₦1.2M+/mo" },
     features: [
       "Automated onboarding workflows",
       "Leave & PTO tracking management",
@@ -363,15 +374,15 @@ export const services: ServiceData[] = [
     icon: "📣",
     name: "Marketing Department",
     tagline: "A full marketing team — strategy to execution to analytics",
-    price: "from $500/mo",
-    priceNote: "Replaces $15,000+/mo in-house cost",
+    price: { usd: "from $500/mo", gbp: "from £400/mo", ngn: "from ₦25,000/mo" },
+    priceNote: { usd: "Replaces $15,000+/mo in-house cost", gbp: "Replaces £12,000+/mo in-house cost", ngn: "Replaces ₦1.8M+/mo in-house cost" },
     roles: "Social · PPC · Content · SEO · Video · Automation · Analytics",
     heroDesc: "Seven specialized AI agents covering every aspect of modern digital marketing — from content creation and social media to paid ads, SEO, video production, marketing automation and performance analytics. All working together under a unified strategy.",
     color: "from-pink-500/20 to-pink-500/5",
     accentVar: "--color-coral",
     accent: "text-pink-400",
     border: "border-pink-500/20",
-    saves: "$15,000+/mo",
+    saves: { usd: "$15,000+/mo", gbp: "£12,000+/mo", ngn: "₦1.8M+/mo" },
     features: [
       "Social media management (3+ platforms)",
       "Google, Meta & LinkedIn ad campaigns",
@@ -468,15 +479,15 @@ export const services: ServiceData[] = [
     icon: "💻",
     name: "Embedded Developers",
     tagline: "Senior developers in your team — at a fraction of the cost",
-    price: "from $500/mo",
-    priceNote: "Replaces $11,150+/mo in-house cost",
+    price: { usd: "from $500/mo", gbp: "from £400/mo", ngn: "from ₦150,000/mo" },
+    priceNote: { usd: "Replaces $11,150+/mo in-house cost", gbp: "Replaces £8,900+/mo in-house cost", ngn: "Replaces ₦1.3M+/mo in-house cost" },
     roles: "Full Stack · QA · DevOps · Tech Lead · UI/UX",
     heroDesc: "A complete development team that embeds in yours — full stack developers, QA engineers, DevOps, tech leads and UI/UX designers. All augmented by AI for 3x faster development velocity.",
     color: "from-cyan-400/20 to-cyan-400/5",
     accentVar: "--color-teal",
     accent: "text-cyan-400",
     border: "border-cyan-400/20",
-    saves: "$11,150+/mo",
+    saves: { usd: "$11,150+/mo", gbp: "£8,900+/mo", ngn: "₦1.3M+/mo" },
     features: [
       "Dedicated developer in your team & tools",
       "Attends your standups & sprint planning",
@@ -557,15 +568,15 @@ export const services: ServiceData[] = [
     icon: "📊",
     name: "Data Science",
     tagline: "Turn your data into decisions with AI-powered intelligence",
-    price: "from $250/mo",
-    priceNote: "Replaces $45,200+/mo in-house cost",
+    price: { usd: "from $250/mo", gbp: "from £200/mo", ngn: "from ₦85,000/mo" },
+    priceNote: { usd: "Replaces $45,200+/mo in-house cost", gbp: "Replaces £36,200+/mo in-house cost", ngn: "Replaces ₦5.4M+/mo in-house cost" },
     roles: "Data Science · ML · Data Engineering · BI · Analytics",
     heroDesc: "Six specialized AI agents powering enterprise-grade data science — from predictive models and ETL pipelines to MLOps, business intelligence and board-ready analytical reports. A complete data team at a fraction of the cost.",
     color: "from-emerald-400/20 to-emerald-400/5",
     accentVar: "--color-teal",
     accent: "text-emerald-400",
     border: "border-emerald-400/20",
-    saves: "$45,200+/mo",
+    saves: { usd: "$45,200+/mo", gbp: "£36,200+/mo", ngn: "₦5.4M+/mo" },
     features: [
       "Predictive analytics & forecasting",
       "Custom ML model development",
@@ -653,15 +664,15 @@ export const services: ServiceData[] = [
     icon: "🧠",
     name: "Enterprise Intelligence",
     tagline: "Strategic oversight, compliance and AI-powered business intelligence",
-    price: "from $500/mo",
-    priceNote: "Replaces $40,000+/mo in-house cost",
+    price: { usd: "from $500/mo", gbp: "from £400/mo", ngn: "from ₦25,000/mo" },
+    priceNote: { usd: "Replaces $40,000+/mo in-house cost", gbp: "Replaces £32,000+/mo in-house cost", ngn: "Replaces ₦4.8M+/mo in-house cost" },
     roles: "Strategy · Analytics · Compliance · AI Governance",
     heroDesc: "Four specialized agents providing the strategic intelligence layer every business needs — cross-functional KPI dashboards, competitor benchmarking, AI governance with confidence-based audit trails, and automated knowledge management.",
     color: "from-rose-400/20 to-rose-400/5",
     accentVar: "--color-coral",
     accent: "text-rose-400",
     border: "border-rose-400/20",
-    saves: "$40,000+/mo",
+    saves: { usd: "$40,000+/mo", gbp: "£32,000+/mo", ngn: "₦4.8M+/mo" },
     features: [
       "Cross-business KPI dashboards & forecasting",
       "Competitor benchmarking & market intelligence",
@@ -732,15 +743,15 @@ export const services: ServiceData[] = [
     icon: "📦",
     name: "Inventory Management",
     tagline: "AI-powered stock control, forecasting and supply chain optimization",
-    price: "from $250/mo",
-    priceNote: "Replaces $18,000+/mo in-house cost",
+    price: { usd: "from $250/mo", gbp: "from £200/mo", ngn: "from ₦50,000/mo" },
+    priceNote: { usd: "Replaces $18,000+/mo in-house cost", gbp: "Replaces £14,400+/mo in-house cost", ngn: "Replaces ₦2.2M+/mo in-house cost" },
     roles: "Stock Control · Procurement · Forecasting · Warehouse",
     heroDesc: "Four AI agents managing your entire supply chain — from stock control and procurement to demand forecasting and warehouse operations. Multi-warehouse, multi-site, e-commerce integrated.",
     color: "from-amber-400/20 to-amber-400/5",
     accentVar: "--color-gold",
     accent: "text-amber-400",
     border: "border-amber-400/20",
-    saves: "$18,000+/mo",
+    saves: { usd: "$18,000+/mo", gbp: "£14,400+/mo", ngn: "₦2.2M+/mo" },
     features: [
       "Unlimited SKU management",
       "Multi-warehouse & multi-site",
