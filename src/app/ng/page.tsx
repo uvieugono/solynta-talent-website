@@ -192,7 +192,7 @@ export default function NigeriaPage() {
                 <div className="pt-4 border-t border-coral/20">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-coral">Monthly total</span>
-                    <span className="font-[var(--font-display)] text-2xl font-bold text-coral">{"\u20A6"}1.1\u20132M+</span>
+                    <span className="font-[var(--font-display)] text-2xl font-bold text-coral">{"\u20A6"}1.1{"\u2013"}2M+</span>
                   </div>
                   <p className="text-xs text-ghost/50 mt-2">Plus recruitment costs, NHIS, pension, training, turnover, office space</p>
                 </div>
