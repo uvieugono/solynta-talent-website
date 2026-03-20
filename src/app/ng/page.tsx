@@ -2,6 +2,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
+import Navbar from "@/components/Navbar";
+import UseCases from "@/components/UseCases";
+import Services from "@/components/Services";
+import Platform from "@/components/Platform";
+import DeliveryModel from "@/components/DeliveryModel";
+import Pricing from "@/components/Pricing";
+import HowItWorks from "@/components/HowItWorks";
+import WhySolynta from "@/components/WhySolynta";
+import FAQ from "@/components/FAQ";
+import Contact from "@/components/Contact";
 import StackCalculator from "@/components/StackCalculator";
 import Footer from "@/components/Footer";
 
@@ -74,22 +84,7 @@ const industries = [
 export default function NigeriaPage() {
   return (
     <main>
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-midnight/80 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Solynta Talent" width={160} height={45} className="h-9 w-auto" priority />
-          </Link>
-          <div className="hidden md:flex items-center gap-6">
-            <Link href="/#services" className="text-sm text-ghost hover:text-teal transition-colors">Services</Link>
-            <Link href="/#pricing" className="text-sm text-ghost hover:text-teal transition-colors">Pricing</Link>
-            <Link href="/calculator" className="text-sm text-ghost hover:text-teal transition-colors">Build Your Stack</Link>
-          </div>
-          <Link href="/consultation" className="px-6 py-2.5 text-sm font-medium rounded-full bg-teal text-midnight hover:bg-teal/90 transition-all">
-            Free AI Analysis
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
@@ -273,6 +268,33 @@ export default function NigeriaPage() {
         </div>
       </section>
 
+      {/* Shared sections from US homepage */}
+      <UseCases />
+      <Services />
+      <Platform />
+      <DeliveryModel />
+      <Pricing />
+
+      {/* Stack Calculator */}
+      <section className="relative py-28">
+        <div className="absolute inset-0 bg-gradient-to-b from-midnight via-navy to-midnight" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <ScrollReveal>
+            <div className="text-center mb-8">
+              <h3 className="font-[var(--font-display)] text-2xl font-bold mb-2">
+                Build Your Operations Stack
+              </h3>
+              <p className="text-ghost text-sm max-w-xl mx-auto">
+                Select the departments you need. Toggle between NGN, USD, and GBP pricing.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <StackCalculator />
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Brain drain section */}
       <section className="relative py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-navy to-midnight" />
@@ -311,50 +333,10 @@ export default function NigeriaPage() {
         </div>
       </section>
 
-      {/* Stack Calculator */}
-      <section className="relative py-28">
-        <div className="absolute inset-0 bg-gradient-to-b from-midnight via-navy to-midnight" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="text-center mb-8">
-              <h3 className="font-[var(--font-display)] text-2xl font-bold mb-2">
-                Build Your Operations Stack
-              </h3>
-              <p className="text-ghost text-sm max-w-xl mx-auto">
-                Select the departments you need. Toggle between USD and NGN pricing.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <StackCalculator />
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative py-28">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy to-midnight" />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <ScrollReveal>
-            <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              Ready to stop losing money
-              <br />
-              to inefficiency and theft?
-            </h2>
-            <p className="text-lg text-ghost/70 max-w-2xl mx-auto mb-10">
-              Get a free AI-powered analysis of your business operations.
-              We&apos;ll show you exactly which modules you need and how much you&apos;ll save.
-            </p>
-            <a
-              href="/consultation"
-              className="inline-flex px-10 py-4 rounded-full bg-teal text-midnight font-semibold text-lg hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400"
-            >
-              Start Your Free Analysis
-            </a>
-          </ScrollReveal>
-        </div>
-      </section>
-
+      <HowItWorks />
+      <WhySolynta />
+      <FAQ />
+      <Contact />
       <Footer />
     </main>
   );
