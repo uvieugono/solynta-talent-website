@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
-import StackCalculator from "./StackCalculator";
-import { Currency, formatPrice } from "@/lib/pricing";
+import { Currency } from "@/lib/pricing";
 
 interface PackageService {
   name: string;
@@ -187,29 +186,6 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Interactive Stack Calculator */}
-        <ScrollReveal>
-          <div className="text-center mb-8">
-            <h3 className="font-[var(--font-display)] text-2xl font-bold mb-2">
-              Build Your Own Package
-            </h3>
-            <p className="text-ghost text-sm max-w-xl mx-auto">
-              Select the services you need. Prices update instantly — toggle between USD, GBP, and NGN.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={100}>
-          <StackCalculator />
-          <div className="text-center mt-6">
-            <a
-              href="/calculator"
-              className="text-sm text-teal hover:text-teal/80 transition-colors"
-            >
-              Open full calculator &rarr;
-            </a>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
