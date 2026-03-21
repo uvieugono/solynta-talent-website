@@ -1,10 +1,14 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
-import { services } from "@/lib/services";
+import { services, pickCurrency } from "@/lib/services";
 import { illustrationMap } from "./ServiceIllustrations";
+import { Currency } from "@/lib/pricing";
 
 export default function Services() {
+  const [currency, setCurrency] = useState<Currency>("USD");
+
   return (
     <section id="services" className="relative py-28">
       <div className="absolute inset-0 bg-gradient-to-b from-midnight to-navy" />
@@ -16,10 +20,27 @@ export default function Services() {
           <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 max-w-3xl">
             9 modules. Your complete operations suite.
           </h2>
-          <p className="text-ghost text-lg max-w-2xl mb-16">
+          <p className="text-ghost text-lg max-w-2xl mb-8">
             Choose any combination of services. Pay only for what you need. Add more as you grow.
             Every service is AI-augmented, human-managed and delivered by your dedicated Solynta team.
           </p>
+
+          {/* Currency toggle */}
+          <div className="flex items-center gap-2 mb-16">
+            {(["USD", "GBP", "NGN"] as Currency[]).map((c) => (
+              <button
+                key={c}
+                onClick={() => setCurrency(c)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                  currency === c
+                    ? "bg-teal/20 text-teal border border-teal/30"
+                    : "text-ghost/50 border border-white/5 hover:border-white/15"
+                }`}
+              >
+                {c === "USD" ? "$ USD" : c === "GBP" ? "£ GBP" : "₦ NGN"}
+              </button>
+            ))}
+          </div>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -51,10 +72,10 @@ export default function Services() {
                       </div>
                       <div className="text-right">
                         <div className="font-[var(--font-display)] text-lg font-bold text-white-soft">
-                          {s.price.usd}
+                          {pickCurrency(s.price, currency)}
                         </div>
                         <div className="text-[10px] text-teal font-medium mt-0.5">
-                          SAVES {s.saves.usd}
+                          SAVES {pickCurrency(s.saves, currency)}
                         </div>
                       </div>
                     </div>
