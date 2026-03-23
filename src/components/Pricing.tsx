@@ -172,14 +172,16 @@ export default function Pricing() {
                 </div>
 
                 <a
-                  href="/consultation"
+                  href="https://calendly.com/uvieugono"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`mt-6 block text-center py-3 rounded-full font-medium text-sm transition-all duration-300 ${
                     pkg.featured
                       ? "bg-teal text-midnight hover:shadow-lg hover:shadow-teal/20"
                       : "border border-white/10 text-white-soft hover:border-teal/40 hover:bg-white/5"
                   }`}
                 >
-                  Get Started
+                  Book a Strategy Call
                 </a>
               </div>
             </ScrollReveal>

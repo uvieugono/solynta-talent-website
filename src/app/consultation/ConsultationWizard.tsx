@@ -1331,7 +1331,7 @@ function ReportView({
                 rel="noopener noreferrer"
                 className="px-5 py-2.5 rounded-lg bg-teal text-midnight font-semibold text-sm hover:bg-teal/90 transition-all shadow-lg shadow-teal/20"
               >
-                Book Onboarding Call
+                Book Your Strategy Call →
               </a>
             </div>
           </div>
@@ -1649,25 +1649,25 @@ function ReportView({
               ))}
             </div>
 
-            <div className="p-6 rounded-xl bg-gradient-to-br from-teal/10 to-lavender/10 border border-teal/20 text-center">
-              <h3 className="font-display text-xl font-bold text-white-soft mb-2">Ready to get started?</h3>
-              <p className="text-ghost mb-5 text-sm">
-                Book a brief onboarding call and we&apos;ll have your first modules live within days.
+            <div className="p-8 rounded-xl bg-gradient-to-br from-teal/10 to-lavender/10 border border-teal/20 text-center">
+              <h3 className="font-display text-2xl font-bold text-white-soft mb-2">Your roadmap is ready.</h3>
+              <p className="text-ghost mb-6 text-base max-w-md mx-auto">
+                The next step is a 30-minute strategy call — let&apos;s walk through your recommendations together and get your first modules live within days.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
                   href="https://calendly.com/uvieugono"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-lg bg-teal text-midnight font-semibold text-sm hover:bg-teal/90 transition-all shadow-lg shadow-teal/20"
+                  className="px-8 py-3.5 rounded-lg bg-teal text-midnight font-semibold text-base hover:bg-teal/90 transition-all shadow-lg shadow-teal/20"
                 >
-                  Book Onboarding Call
+                  Book Your Strategy Call →
                 </a>
                 <a
                   href="mailto:hello@solyntatalent.com"
-                  className="px-6 py-3 rounded-lg border border-white/10 text-white-soft font-medium text-sm hover:bg-slate-dark transition-all"
+                  className="px-6 py-3.5 rounded-lg border border-white/10 text-white-soft font-medium text-sm hover:bg-slate-dark transition-all"
                 >
-                  Email Us
+                  Email Us Instead
                 </a>
               </div>
             </div>

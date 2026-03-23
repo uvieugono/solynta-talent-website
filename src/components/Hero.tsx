@@ -52,17 +52,19 @@ export default function Hero() {
           {/* CTAs */}
           <div className="animate-fade-up delay-300 flex flex-wrap gap-4 mb-16">
             <a
-              href="/consultation"
+              href="https://calendly.com/uvieugono"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative px-8 py-4 rounded-full bg-teal text-midnight font-semibold text-base hover:shadow-2xl hover:shadow-teal/25 transition-all duration-400"
             >
-              <span className="relative z-10">Get Your Free AI Business Analysis</span>
+              <span className="relative z-10">Book a Free Strategy Call</span>
               <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
             <a
-              href="#pricing"
+              href="/consultation"
               className="px-8 py-4 rounded-full border border-white/10 text-white-soft font-medium text-base hover:border-teal/40 hover:bg-white/5 transition-all duration-400"
             >
-              See Pricing
+              Get Free AI Analysis
             </a>
           </div>
 
