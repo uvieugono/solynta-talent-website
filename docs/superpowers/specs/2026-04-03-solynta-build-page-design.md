@@ -75,7 +75,11 @@ Scale tier: scoped individually, 12-month minimum, dedicated build overseer.
 
 ### 4. Pricing
 
-Currency/market toggle at top — three buttons: GBP, USD, NGN. Geo-detection sets default via existing middleware.
+Currency/market toggle at top — three buttons: GBP, USD, NGN.
+
+**Section anchor ID:** `id="pricing"`
+
+**Default currency:** Read the `st-market` cookie client-side (set by middleware on root `/` visits). Map `GB` → GBP, `NG` → NGN, else USD. If no cookie exists, default to USD. No async loading — synchronous cookie read, no flash.
 
 **UK (GBP) — Monthly subscription:**
 
@@ -107,12 +111,21 @@ Each pricing card has a "Start Building →" CTA → Calendly.
 
 ### 5. Income Scenarios
 
-Shown for UK/US (subscription model). Brief ROI examples:
+**Section anchor ID:** `id="income"`
 
+Shown for UK/US only — hidden when NGN is selected (one-time pricing makes subscription ROI math inapplicable).
+
+Currency-aware: switches between GBP and USD examples based on toggle.
+
+**GBP examples:**
 - **Conservative:** 80 users × £5/mo = £400/mo revenue − £199 subscription = £201/mo net income
 - **Realistic:** 300 users × £10/mo = £3,000/mo revenue − £399 subscription = £2,601/mo net income
 
-Nigeria: simpler "you keep 100% of your software revenue" message.
+**USD examples:**
+- **Conservative:** 80 users × $7/mo = $560/mo revenue − $299 subscription = $261/mo net income
+- **Realistic:** 300 users × $12/mo = $3,600/mo revenue − $599 subscription = $3,001/mo net income
+
+When NGN selected: replace with a simple message — "You keep 100% of your software revenue. No ongoing subscription. Build once, earn forever."
 
 ### 6. FAQ
 
@@ -155,7 +168,20 @@ Reuse existing Footer component.
 
 - `ScrollReveal` — fade-in animations
 - `Footer` — page footer
-- `Navbar` — site navigation (with new link added)
+- `Navbar` — site navigation (with new link added). Existing Navbar links point to homepage anchors — this is acceptable. When on `/build`, nav links navigate to homepage sections. The Build page's own sections use internal anchor scroll via the hero CTAs, not the nav.
+
+### Component Architecture
+
+- `src/app/build/page.tsx` — server component, exports `metadata` for SEO
+- All `src/components/build/*.tsx` — `"use client"` components (currency toggle state needs client-side interactivity)
+- Currency state lifted to page-level client wrapper that passes selected currency down to BuildPricing, BuildIncomeScenarios, and BuildFAQ
+
+### SEO Metadata
+
+`src/app/build/page.tsx` exports metadata:
+- **Title:** "Solynta Build — Own Your Own Software Business"
+- **Description:** "We build your custom software. You keep 100% of the revenue. Starting from £199/month."
+- **Open Graph:** Same title/description with appropriate og:image
 
 ### Styling
 
@@ -163,10 +189,21 @@ Reuse existing Footer component.
 - Fonts: Clash Display (headings), General Sans (body)
 - Animation: ScrollReveal with stagger delays
 - Responsive: mobile-first, same breakpoints as existing pages
+- Feature comparison table: on mobile, horizontally scrollable with sticky first column (feature names)
 
-### Geo-Detection
+### Section Anchor IDs
 
-Existing middleware handles geo-detection. Page reads currency preference same way `/ng` and `/uk` pages do. Default currency set by detected region, manual toggle available.
+| Section | ID |
+|---|---|
+| How It Works | `how-it-works` |
+| What You Get | `features` |
+| Pricing | `pricing` |
+| Income Scenarios | `income` |
+| FAQ | `faq` |
+
+### Geo-Detection / Currency Default
+
+Read `st-market` cookie client-side. Map `GB` → GBP, `NG` → NGN, else USD. Synchronous read — no loading state needed. Manual toggle always available.
 
 ### Pricing Data
 
