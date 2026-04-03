@@ -44,10 +44,16 @@ export default function BuildHero() {
               Book a Call
             </a>
             <Link
-              href="#pricing"
+              href="/build/requirements"
               className="px-8 py-4 rounded-full border border-white/10 text-white-soft font-[var(--font-display)] font-bold text-sm tracking-wide hover:border-teal/40 hover:text-teal transition-all"
             >
-              See Pricing
+              I Have an Idea
+            </Link>
+            <Link
+              href="/build/idea-consultation"
+              className="px-8 py-4 rounded-full text-ghost font-[var(--font-display)] font-bold text-sm tracking-wide hover:text-teal transition-all"
+            >
+              No Idea Yet?
             </Link>
           </div>
         </ScrollReveal>

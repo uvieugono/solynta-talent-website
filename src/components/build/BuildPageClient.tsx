@@ -10,6 +10,7 @@ import BuildPricing from "./BuildPricing";
 import BuildIncomeScenarios from "./BuildIncomeScenarios";
 import BuildFAQ from "./BuildFAQ";
 import BuildCTA from "./BuildCTA";
+import BuildIdeasBanner from "./BuildIdeasBanner";
 
 type Currency = "USD" | "GBP" | "NGN";
 
@@ -34,6 +35,7 @@ export default function BuildPageClient() {
       <BuildPricing currency={currency} setCurrency={setCurrency} />
       <BuildIncomeScenarios currency={currency} />
       <BuildFAQ currency={currency} />
+      {currency === "NGN" && <BuildIdeasBanner />}
       <BuildCTA />
       <Footer />
     </main>
