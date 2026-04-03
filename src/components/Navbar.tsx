@@ -11,6 +11,7 @@ const links = [
   { href: "/calculator", label: "Build Your Stack" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/build", label: "Solynta Build" },
 ];
 
 export default function Navbar() {
