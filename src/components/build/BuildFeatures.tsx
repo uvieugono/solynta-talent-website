@@ -46,8 +46,8 @@ export default function BuildFeatures() {
             Three tiers. One mission.
           </h2>
           <p className="text-lg text-ghost text-center max-w-2xl mx-auto mb-16">
-            Every tier includes a full custom web application built by Claude
-            Code, delivered within 30&nbsp;days, and hosted on our
+            Every tier includes a full custom web application built by our
+            team, delivered within 30&nbsp;days, and hosted on our
             infrastructure.
           </p>
         </ScrollReveal>

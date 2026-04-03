@@ -14,11 +14,11 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     q: "What exactly do I get?",
-    a: "A fully custom web application \u2014 designed around your idea, built by Claude Code, deployed to production-grade cloud hosting, and maintained by Solynta. You own the software and keep 100% of the revenue it generates. The Starter tier includes up to 5 feature modules, user accounts, and 1 third-party integration. Growth and Scale tiers add more features, integrations, and capacity.",
+    a: "A fully custom web application \u2014 designed around your idea, built by our engineering team, deployed to production-grade cloud hosting, and maintained by Solynta. You own the software and keep 100% of the revenue it generates. The Starter tier includes up to 5 feature modules, user accounts, and 1 third-party integration. Growth and Scale tiers add more features, integrations, and capacity.",
   },
   {
     q: "How long does the build take?",
-    a: "30 days from PRD sign-off. We scope your product in 48 hours, then Claude Code builds and tests your software over 3\u20134 weeks. You review progress weekly and can request adjustments throughout the build.",
+    a: "30 days from PRD sign-off. We scope your product in 48 hours, then we build and test your software over 3\u20134 weeks. You review progress weekly and can request adjustments throughout the build.",
   },
   {
     q: "Do I own the software?",
@@ -40,7 +40,7 @@ const faqs: FAQItem[] = [
   },
   {
     q: "What technology do you use to build?",
-    a: "Claude Code \u2014 Anthropic\u2019s AI coding agent \u2014 builds your software under human oversight. The stack is modern and production-grade: typically Next.js, React, TypeScript, and PostgreSQL, deployed on scalable cloud infrastructure. Every build is tested, reviewed, and deployed with CI/CD pipelines.",
+    a: "We use AI-augmented development under human oversight. The stack is modern and production-grade: typically Next.js, React, TypeScript, and PostgreSQL, deployed on scalable cloud infrastructure. Every build is tested, reviewed, and deployed with CI/CD pipelines.",
   },
 ];
 

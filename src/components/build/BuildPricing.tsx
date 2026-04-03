@@ -48,7 +48,7 @@ const tiers: TierData[] = [
       note: "Hosting & maintenance charged separately",
     },
     includes: [
-      { text: "Full custom web app \u2014 built by Claude Code", key: true },
+      { text: "Full custom web app \u2014 built for you", key: true },
       { text: "Up to 5 core feature modules", key: true },
       { text: "User accounts and login", key: true },
       { text: "Cloud hosting \u2014 always on", key: true },

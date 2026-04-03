@@ -13,7 +13,7 @@ const steps = [
   {
     num: "02",
     title: "We build it",
-    desc: "Claude Code builds your custom software — full-stack, tested, production-ready. You review progress weekly.",
+    desc: "We build your custom software — full-stack, tested, production-ready. You review progress weekly.",
     timing: "Days 3–28",
     color: "border-lavender",
   },

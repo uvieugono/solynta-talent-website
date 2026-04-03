@@ -184,7 +184,7 @@ const categories: FAQCategory[] = [
     items: [
       {
         q: "What development roles does this replace?",
-        a: "Depending on tier, this replaces 1\u20135 development hires: Full Stack Developer, QA Engineer, UI/UX Designer, DevOps Engineer and Tech Lead \u2014 saving $11,150+/month or more. Your developers embed directly in your team: they work in your codebase, use your tools (Slack/Jira/GitHub), attend your standups and deliver within your sprint cycles. Full IP assignment, strict NDAs. AI augmentation via Claude Code and GitHub Copilot means each developer produces 3x the output of a traditional hire.",
+        a: "Depending on tier, this replaces 1\u20135 development hires: Full Stack Developer, QA Engineer, UI/UX Designer, DevOps Engineer and Tech Lead \u2014 saving $11,150+/month or more. Your developers embed directly in your team: they work in your codebase, use your tools (Slack/Jira/GitHub), attend your standups and deliver within your sprint cycles. Full IP assignment, strict NDAs. AI augmentation means each developer produces 3x the output of a traditional hire.",
       },
       {
         q: "How does AI make your developers 3x faster?",
