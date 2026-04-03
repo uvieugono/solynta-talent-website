@@ -8,7 +8,7 @@ const features = [
   { name: "User accounts & login", starter: true, growth: true, scale: true },
   { name: "Cloud hosting included", starter: true, growth: true, scale: true },
   { name: "Third-party integrations", starter: "1", growth: "Up to 5", scale: "Unlimited" },
-  { name: "Payment processing", starter: false, growth: true, scale: true },
+  { name: "Payment processing", starter: false, growth: "Stripe / Paystack", scale: true },
   { name: "Advanced user roles", starter: false, growth: true, scale: true },
   { name: "Mobile-optimised PWA", starter: false, growth: true, scale: true },
   { name: "Native iOS & Android apps", starter: false, growth: false, scale: true },
